@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Proposal — ARC Anti Rabies Clinic</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --yellow: #FFCC00;
+  --dark: #0a1628;
+  --gray: #555;
+  --light: #f8f8f6;
+  --border: #e0e0de;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #222;
+  background: #eee;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.page {
+  max-width: 800px;
+  margin: 32px auto;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,.08);
+}
+
+@media print {
+  body { background: #fff; }
+  .page { margin: 0; box-shadow: none; max-width: none; }
+  .no-print { display: none !important; }
+}
+
+.header {
+  background: linear-gradient(135deg, var(--dark) 0%, #1565C0 100%);
+  color: #fff;
+  padding: 40px 48px 36px;
+}
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brand img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.brand-name {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.brand-sub {
+  font-size: 11px;
+  opacity: .75;
+  margin-top: 2px;
+}
+.doc-meta {
+  text-align: right;
+  font-size: 11px;
+  color: rgba(255,255,255,.9);
+  line-height: 1.8;
+}
+.doc-meta strong { color: #fff; font-weight: 700; }
+
+h1 {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0;
+  color: #fff;
+}
+
+.lead-box {
+  background: #fff;
+  color: #222;
+  margin: 24px 48px 0;
+  padding: 18px 22px;
+  border-radius: 12px;
+  border-left: 5px solid var(--yellow);
+  box-shadow: 0 4px 20px rgba(0,0,0,.15);
+}
+.lead-box p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #222;
+  margin: 0;
+}
+.lead-box p.tagalog {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #444;
+}
+
+.body { padding: 28px 48px 48px; }
+
+h2 {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--yellow);
+}
+h2:first-child { margin-top: 0; }
+
+p { margin-bottom: 10px; color: #333; }
+
+ul {
+  margin: 0 0 12px 18px;
+  color: #333;
+}
+ul li { margin-bottom: 5px; }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 8px;
+}
+@media (max-width: 600px) {
+  .header, .body { padding: 28px 24px; }
+  .lead-box { margin: 20px 16px 0; padding: 16px 18px; }
+  .header-top { flex-direction: column; }
+  .doc-meta { text-align: left; }
+  .two-col { grid-template-columns: 1fr; }
+}
+
+.box {
+  background: var(--light);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+.box h3 {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--dark);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 4px;
+  font-size: 13px;
+}
+th, td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  background: var(--light);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+td:last-child, th:last-child { text-align: right; }
+tr.total td {
+  font-weight: 800;
+  font-size: 15px;
+  border-top: 2px solid var(--dark);
+  border-bottom: none;
+  padding-top: 14px;
+  color: var(--dark);
+}
+tr.package td { background: #fffde6; }
+.discount-banner {
+  background: #fffde6;
+  border: 1px solid var(--yellow);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #333;
+}
+.discount-banner strong { color: var(--dark); }
+.strike { text-decoration: line-through; color: #999; font-weight: 400; }
+.note {
+  font-size: 11px;
+  color: var(--gray);
+  margin-top: 8px;
+  font-style: italic;
+}
+
+.domain-pricing {
+  background: #f8f8f6;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #444;
+  line-height: 1.6;
+}
+.domain-pricing strong { color: var(--dark); font-size: 12px; }
+.domain-pricing p { margin: 0 0 6px; font-size: 12px; color: #444; }
+.domain-pricing p:last-child { margin-bottom: 0; }
+.promo-badge {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--dark);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.packages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+@media (max-width: 700px) {
+  .packages { grid-template-columns: 1fr; }
+}
+.pkg {
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 16px;
+  text-align: center;
+}
+.pkg.featured {
+  border-color: var(--yellow);
+  background: #fffef5;
+  position: relative;
+}
+.pkg-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--yellow);
+  color: var(--dark);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  padding: 3px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.pkg-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.pkg-price {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1;
+}
+.pkg-price span { font-size: 13px; font-weight: 600; }
+.pkg-desc {
+  font-size: 11px;
+  color: var(--gray);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.timeline {
+  display: flex;
+  gap: 0;
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.tl-step {
+  flex: 1;
+  padding: 14px 12px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.tl-step:last-child { border-right: none; }
+.tl-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1565C0;
+  line-height: 1;
+}
+.tl-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--gray);
+  margin-top: 4px;
+}
+.tl-days {
+  font-size: 11px;
+  color: #333;
+  margin-top: 2px;
+}
+@media (max-width: 600px) {
+  .timeline { flex-direction: column; }
+  .tl-step { border-right: none; border-bottom: 1px solid var(--border); }
+  .tl-step:last-child { border-bottom: none; }
+}
+
+.sign {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.sign-line {
+  border-top: 1px solid #333;
+  margin-top: 48px;
+  padding-top: 8px;
+  font-size: 12px;
+}
+.sign-line span { display: block; font-size: 10px; color: var(--gray); margin-top: 2px; }
+
+.footer-note {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--gray);
+  text-align: center;
+}
+
+.print-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--dark);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
+}
+.print-btn:hover { background: #1565C0; }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">Print / Save as PDF</button>
+
+<div class="page">
+
+  <div class="header">
+    <div class="header-top">
+      <div class="brand">
+        <img src="arc_logo.jpg" alt="ARC Logo">
+        <div>
+          <div class="brand-name">ARC Anti Rabies Clinic</div>
+          <div class="brand-sub">11 Branches · Nueva Ecija &amp; Tarlac</div>
+        </div>
+      </div>
+      <div class="doc-meta">
+        <div><strong>Proposal Date:</strong> June 29, 2026</div>
+        <div><strong>Valid Until:</strong> July 29, 2026</div>
+        <div><strong>Prepared By:</strong> Hansel Mejarito</div>
+        <div><strong>Contact:</strong> 0906 624 5890</div>
+      </div>
+    </div>
+    <h1>Website Development Proposal</h1>
+  </div>
+
+  <div class="lead-box">
+    <p><strong>Professional, mobile-ready website</strong> — helps patients find the nearest ARC branch, learn about services, and contact the clinic fast, especially during animal bite emergencies.</p>
+    <p class="tagalog">Propesyonal at puwedeng buksan sa cellphone — para madaling hanapin ng pasyente ang pinakamalapit na ARC branch, makita ang services, at makontak ang clinic, lalo na kapag may animal bite.</p>
+  </div>
+
+  <div class="body">
+
+    <h2>The Challenge</h2>
+    <p>ARC operates 11 branches across Nueva Ecija and Tarlac (ARC, LIFEMED, and VAXGUARD), but patients currently rely on Facebook pages and word-of-mouth to find locations, hours, and hotlines. After an animal bite, every minute counts — a centralized website reduces confusion and builds trust.</p>
+
+    <h2>Our Solution</h2>
+    <div class="two-col">
+      <div class="box">
+        <h3>What We Will Build</h3>
+        <ul>
+          <li>Responsive website (desktop, tablet, phone)</li>
+          <li>11 branch listings with filter by province</li>
+          <li>Interactive map with branch locations</li>
+          <li>Click-to-call &amp; Google Maps directions</li>
+          <li>Services, What To Do, FAQ sections</li>
+          <li>Contact form &amp; PhilHealth information</li>
+          <li>ARC branding (logo, colors, favicon)</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Domain &amp; Hosting</h3>
+        <ul>
+          <li><strong>Domain:</strong> arc-animalbitecenter.com</li>
+          <li>3-year term — <span class="strike">₱3,297</span> <strong>₱2,199</strong> <span class="promo-badge">33% OFF</span></li>
+          <li>Registered in client's name (GoDaddy)</li>
+          <li>SSL certificate (HTTPS)</li>
+          <li>Website deployment &amp; go-live</li>
+          <li>Basic DNS configuration</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Investment</h2>
+
+    <div class="discount-banner">
+      <strong>Special rate para sa ARC (kakilala / friends &amp; family)</strong> — discounted development fee. Domain at hosting ay at cost lang; walang dagdag na markup.
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Details</th>
+          <th>Amount (PHP)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Website Development</td>
+          <td>Design, build, mobile optimization, 1 revision round</td>
+          <td><span class="strike">₱20,000</span> <strong>₱10,000</strong></td>
+        </tr>
+        <tr>
+          <td>Domain Registration</td>
+          <td>arc-animalbitecenter.com — 3-year term (GoDaddy) <span class="promo-badge">33% OFF</span></td>
+          <td><span class="strike">₱3,297.00</span> <strong>₱2,199.00</strong></td>
+        </tr>
+        <tr>
+          <td>Hosting Setup (Year 1)</td>
+          <td>Deployment, SSL, DNS, go-live support</td>
+          <td><span class="strike">₱3,500</span> <strong>₱2,500</strong></td>
+        </tr>
+        <tr>
+          <td><em>Optional — Annual Maintenance</em></td>
+          <td>Content updates, minor fixes, uptime monitoring</td>
+          <td><em><span class="strike">₱5,000</span> ₱2,000/yr</em></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="domain-pricing">
+      <strong>Domain pricing (GoDaddy — arc-animalbitecenter.com)</strong>
+      <p>3-year term: <span class="strike">₱3,297.00</span> <strong>₱2,199.00</strong> <span class="promo-badge">33% OFF</span></p>
+      <p>Auto-renews at registrar's prevailing rate after 3 years (approx. ₱3,297 unless promo applies).</p>
+      <p>₱12.20 ICANN fees and applicable taxes may apply at checkout.</p>
+    </div>
+    <p class="note">Maintenance is optional and billed annually at ₱2,000/yr.</p>
+
+    <div class="packages">
+      <div class="pkg">
+        <div class="pkg-name">Package A</div>
+        <div class="pkg-price"><span>₱</span>10,000</div>
+        <div class="pkg-desc">Website lang.<br>Sila na ang bahala sa domain at hosting.</div>
+      </div>
+      <div class="pkg featured">
+        <div class="pkg-badge">RECOMMENDED</div>
+        <div class="pkg-name">Package B</div>
+        <div class="pkg-price"><span>₱</span>14,699</div>
+        <div class="pkg-desc">Website + domain (3 yrs) + hosting.<br>Handa nang i-launch.</div>
+      </div>
+      <div class="pkg">
+        <div class="pkg-name">Package C</div>
+        <div class="pkg-price"><span>₱</span>16,699</div>
+        <div class="pkg-desc">Package B + 1 taon maintenance.<br>May suporta pagkatapos launch.</div>
+      </div>
+    </div>
+
+    <h2>Timeline</h2>
+    <div class="timeline">
+      <div class="tl-step">
+        <div class="tl-num">1</div>
+        <div class="tl-label">Kickoff</div>
+        <div class="tl-days">Day 1</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">2</div>
+        <div class="tl-label">Content &amp; Build</div>
+        <div class="tl-days">Day 2–6</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">3</div>
+        <div class="tl-label">Review</div>
+        <div class="tl-days">Day 7–8</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">4</div>
+        <div class="tl-label">Launch</div>
+        <div class="tl-days">Day 9–10</div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:10px">Total estimated delivery: <strong>10 days</strong> from downpayment and receipt of all client materials.</p>
+
+    <h2>Payment Terms</h2>
+    <ul>
+      <li><strong>50% downpayment</strong> — upon proposal approval (required to begin work)</li>
+      <li><strong>50% balance</strong> — upon final delivery, before website handover / go-live</li>
+      <li>Payment via bank transfer, GCash, or agreed method</li>
+      <li>Official receipt provided upon request</li>
+    </ul>
+
+    <h2>Client Responsibilities</h2>
+    <ul>
+      <li>Provide ARC logo and brand assets (logo provided ✓)</li>
+      <li>Confirm exact address &amp; phone number for each of the 11 branches</li>
+      <li>Approve website text, photos, and branch information</li>
+      <li>Register domain in clinic's name (or authorize us to register on their behalf)</li>
+      <li>Respond to revision requests within 3 business days</li>
+    </ul>
+
+    <h2>Not Included (Available on Request)</h2>
+    <ul>
+      <li>Professional copywriting / photography</li>
+      <li>CMS (WordPress) for self-editing content</li>
+      <li>Google Business Profile setup for all branches</li>
+      <li>Business email (e.g. info@arc-animalbitecenter.com)</li>
+      <li>SEO / Google Ads campaign</li>
+    </ul>
+
+    <h2>Next Steps</h2>
+    <ol style="margin:0 0 12px 18px;color:#333">
+      <li>Review and approve this proposal (sign below)</li>
+      <li>Submit 50% downpayment</li>
+      <li>Kickoff call to confirm branch details &amp; content</li>
+      <li>Website preview → revisions → launch 🚀</li>
+    </ol>
+
+    <div class="sign">
+      <div>
+        <div class="sign-line">
+          [Client Name / Authorized Representative]
+          <span>ARC Anti Rabies Clinic — Signature &amp; Date</span>
+        </div>
+      </div>
+      <div>
+        <div class="sign-line">
+          Hansel Mejarito
+          <span>Developer — Signature &amp; Date</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      This proposal is confidential and intended solely for ARC Anti Rabies Clinic.<br>
+      A working preview of the website has been prepared for demonstration purposes.
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
