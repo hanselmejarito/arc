@@ -1,0 +1,18 @@
+{
+  "name": "arc-anti-rabies-clinic",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "next-app"
+  ],
+  "scripts": {
+    "dev": "npm --prefix next-app run dev",
+    "build": "npm --prefix next-app run build",
+    "start": "npm --prefix next-app run start"
+  },
+  "dependencies": {
+    "next": "16.2.10",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  }
+}
