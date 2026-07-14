@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import ScrollLink from "@/components/ScrollLink";
 import { useEffect, useRef, useState } from "react";
 
 const links = [
-  ["Services", "#services"],
-  ["What To Do", "#what-to-do"],
-  ["Branches", "#branches"],
-  ["FAQ", "#faq"],
+  ["Services", "services"],
+  ["What To Do", "what-to-do"],
+  ["Branches", "branches"],
+  ["FAQ", "faq"],
 ] as const;
 
 export default function Header() {
@@ -27,7 +28,7 @@ export default function Header() {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
-    const closeOnOutsideClick = (event: MouseEvent) => {
+    const closeOnOutsideClick = (event: globalThis.MouseEvent) => {
       if (!headerRef.current?.contains(event.target as Node)) setOpen(false);
     };
 
@@ -41,15 +42,21 @@ export default function Header() {
 
   return (
     <>
-      <a href="#what-to-do" className="emergency-bar">
+      <ScrollLink href="#what-to-do" targetId="what-to-do" className="emergency-bar">
         <span className="pulse" aria-hidden="true" />
         Animal bite? Wash the wound immediately with soap &amp; water for 15
         minutes — then go to the nearest ARC branch NOW.
         <span className="pulse" aria-hidden="true" />
-      </a>
+      </ScrollLink>
       <header ref={headerRef}>
         <div className="header-inner">
-          <a href="#top" className="logo-wrap" aria-label="ARC home">
+          <ScrollLink
+            href="/"
+            targetId="top"
+            className="logo-wrap"
+            aria-label="ARC home"
+            onClick={() => setOpen(false)}
+          >
             <Image
               src="/arc_logo.jpg"
               alt="ARC Anti Rabies Vaccine Clinic"
@@ -58,7 +65,7 @@ export default function Header() {
               height={52}
               priority
             />
-          </a>
+          </ScrollLink>
           <button
             className="menu-toggle"
             type="button"
@@ -84,18 +91,24 @@ export default function Header() {
             </svg>
           </button>
           <nav id="mainNav" className={open ? "open" : undefined}>
-            {links.map(([label, href]) => (
-              <a key={href} href={href} onClick={() => setOpen(false)}>
+            {links.map(([label, id]) => (
+              <ScrollLink
+                key={id}
+                href={`#${id}`}
+                targetId={id}
+                onClick={() => setOpen(false)}
+              >
                 {label}
-              </a>
+              </ScrollLink>
             ))}
-            <a
+            <ScrollLink
               href="#contact"
+              targetId="contact"
               className="nav-cta"
               onClick={() => setOpen(false)}
             >
               Contact Us
-            </a>
+            </ScrollLink>
           </nav>
         </div>
       </header>

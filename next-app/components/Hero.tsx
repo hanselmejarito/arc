@@ -1,4 +1,5 @@
 import BranchMap from "./BranchMap";
+import ScrollLink from "./ScrollLink";
 
 export default function Hero() {
   return (
@@ -21,30 +22,34 @@ export default function Hero() {
             branches in Nueva Ecija and Tarlac.
           </p>
           <div className="hero-actions">
-            <a href="#branches" className="btn-primary">
+            <ScrollLink href="#branches" targetId="branches" className="btn-primary">
               <span aria-hidden="true">📍</span> Find a Branch
-            </a>
-            <a href="#what-to-do" className="btn-secondary">
+            </ScrollLink>
+            <ScrollLink
+              href="#what-to-do"
+              targetId="what-to-do"
+              className="btn-secondary"
+            >
               What To Do After a Bite →
-            </a>
+            </ScrollLink>
           </div>
           <div className="hero-stats">
-            <a href="#branches" className="hero-stat-link">
+            <ScrollLink href="#branches" targetId="branches" className="hero-stat-link">
               <div className="stat-num">11</div>
               <div className="stat-label">Branches</div>
-            </a>
-            <a href="#branches" className="hero-stat-link">
+            </ScrollLink>
+            <ScrollLink href="#branches" targetId="branches" className="hero-stat-link">
               <div className="stat-num">Daily</div>
               <div className="stat-label">Clinic Availability</div>
-            </a>
-            <a href="#faq" className="hero-stat-link">
+            </ScrollLink>
+            <ScrollLink href="#faq" targetId="faq" className="hero-stat-link">
               <div className="stat-num">5</div>
               <div className="stat-label">Accredited Branches</div>
-            </a>
-            <a href="#services" className="hero-stat-link">
+            </ScrollLink>
+            <ScrollLink href="#services" targetId="services" className="hero-stat-link">
               <div className="stat-num">10+</div>
               <div className="stat-label">Years of Service</div>
-            </a>
+            </ScrollLink>
           </div>
         </div>
         <div className="hero-visual hero-enter hero-enter-delay">

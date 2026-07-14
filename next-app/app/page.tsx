@@ -1,3 +1,4 @@
+import ScrollAnchorOnLoad from "@/components/ScrollAnchorOnLoad";
 import AccreditationBand from "@/components/AccreditationBand";
 import BiteSteps from "@/components/BiteSteps";
 import Branches from "@/components/Branches";
@@ -12,6 +13,7 @@ import Services from "@/components/Services";
 export default function Home() {
   return (
     <>
+      <ScrollAnchorOnLoad />
       <Header />
       <main>
         <Hero />

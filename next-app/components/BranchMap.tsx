@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import { branches } from "@/data/branches";
 
+import { scrollToElement } from "@/lib/scroll-to-section";
+
 function escapeHtml(value: string) {
   return value
     .replaceAll("&", "&amp;")
@@ -12,12 +14,7 @@ function escapeHtml(value: string) {
 }
 
 function highlightBranch(number: number) {
-  const el = document.getElementById(`branch-${number}`);
-  if (!el) return;
-
-  el.scrollIntoView({ behavior: "smooth", block: "center" });
-  el.classList.add("is-highlighted");
-  window.setTimeout(() => el.classList.remove("is-highlighted"), 2800);
+  scrollToElement(`branch-${number}`, { block: "center", highlight: true });
 }
 
 function buildPopup(branch: (typeof branches)[number]) {

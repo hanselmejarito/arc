@@ -1,3 +1,5 @@
+import ScrollLink from "./ScrollLink";
+
 const services = [
   {
     icon: "💉",
@@ -62,10 +64,11 @@ export default function Services() {
         </p>
         <div className="services-grid">
           {services.map((service) => (
-            <a
+            <ScrollLink
               className="service-card clickable"
               href="#contact"
               key={service.name}
+              targetId="contact"
             >
               <div className={`service-icon ${service.tone}`}>
                 {service.icon}
@@ -73,7 +76,7 @@ export default function Services() {
               <div className="service-name">{service.name}</div>
               <div className="service-desc">{service.description}</div>
               <div className="service-price">✓ {service.detail}</div>
-            </a>
+            </ScrollLink>
           ))}
         </div>
       </div>
