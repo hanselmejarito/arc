@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import ScrollLink from "@/components/ScrollLink";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const links = [
@@ -14,6 +16,8 @@ const links = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+  const onHome = pathname === "/";
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -42,30 +46,61 @@ export default function Header() {
 
   return (
     <>
-      <ScrollLink href="#what-to-do" targetId="what-to-do" className="emergency-bar">
-        <span className="pulse" aria-hidden="true" />
-        Animal bite? Wash the wound immediately with soap &amp; water for 15
-        minutes — then go to the nearest ARC branch NOW.
-        <span className="pulse" aria-hidden="true" />
-      </ScrollLink>
+      {onHome ? (
+        <ScrollLink
+          href="#what-to-do"
+          targetId="what-to-do"
+          className="emergency-bar"
+        >
+          <span className="pulse" aria-hidden="true" />
+          Animal bite? Wash the wound immediately with soap &amp; water for 15
+          minutes — then go to the nearest ARC branch NOW.
+          <span className="pulse" aria-hidden="true" />
+        </ScrollLink>
+      ) : (
+        <a href="/#what-to-do" className="emergency-bar">
+          <span className="pulse" aria-hidden="true" />
+          Animal bite? Wash the wound immediately with soap &amp; water for 15
+          minutes — then go to the nearest ARC branch NOW.
+          <span className="pulse" aria-hidden="true" />
+        </a>
+      )}
       <header ref={headerRef}>
         <div className="header-inner">
-          <ScrollLink
-            href="/"
-            targetId="top"
-            className="logo-wrap"
-            aria-label="ARC home"
-            onClick={() => setOpen(false)}
-          >
-            <Image
-              src="/arc_logo.jpg"
-              alt="ARC Anti Rabies Vaccine Clinic"
-              className="logo-img"
-              width={52}
-              height={52}
-              priority
-            />
-          </ScrollLink>
+          {onHome ? (
+            <ScrollLink
+              href="/"
+              targetId="top"
+              className="logo-wrap"
+              aria-label="ARC home"
+              onClick={() => setOpen(false)}
+            >
+              <Image
+                src="/arc_logo.jpg"
+                alt="ARC Anti Rabies Vaccine Clinic"
+                className="logo-img"
+                width={52}
+                height={52}
+                priority
+              />
+            </ScrollLink>
+          ) : (
+            <Link
+              href="/"
+              className="logo-wrap"
+              aria-label="ARC home"
+              onClick={() => setOpen(false)}
+            >
+              <Image
+                src="/arc_logo.jpg"
+                alt="ARC Anti Rabies Vaccine Clinic"
+                className="logo-img"
+                width={52}
+                height={52}
+                priority
+              />
+            </Link>
+          )}
           <button
             className="menu-toggle"
             type="button"
@@ -91,24 +126,44 @@ export default function Header() {
             </svg>
           </button>
           <nav id="mainNav" className={open ? "open" : undefined}>
-            {links.map(([label, id]) => (
+            {links.map(([label, id]) =>
+              onHome ? (
+                <ScrollLink
+                  key={id}
+                  href={`#${id}`}
+                  targetId={id}
+                  onClick={() => setOpen(false)}
+                >
+                  {label}
+                </ScrollLink>
+              ) : (
+                <a
+                  key={id}
+                  href={`/#${id}`}
+                  onClick={() => setOpen(false)}
+                >
+                  {label}
+                </a>
+              ),
+            )}
+            {onHome ? (
               <ScrollLink
-                key={id}
-                href={`#${id}`}
-                targetId={id}
+                href="#contact"
+                targetId="contact"
+                className="nav-cta"
                 onClick={() => setOpen(false)}
               >
-                {label}
+                Contact Us
               </ScrollLink>
-            ))}
-            <ScrollLink
-              href="#contact"
-              targetId="contact"
-              className="nav-cta"
-              onClick={() => setOpen(false)}
-            >
-              Contact Us
-            </ScrollLink>
+            ) : (
+              <a
+                href="/#contact"
+                className="nav-cta"
+                onClick={() => setOpen(false)}
+              >
+                Contact Us
+              </a>
+            )}
           </nav>
         </div>
       </header>

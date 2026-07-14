@@ -1,6 +1,12 @@
+import TrustBadges from "./TrustBadges";
+
 export default function AccreditationBand() {
   return (
-    <section className="philhealth-band" aria-labelledby="philhealth-title">
+    <section
+      className="philhealth-band"
+      id="accreditation"
+      aria-labelledby="philhealth-title"
+    >
       <div className="philhealth-inner">
         <div>
           <h2 className="ph-title" id="philhealth-title">
@@ -13,28 +19,7 @@ export default function AccreditationBand() {
             to confirm eligibility.
           </p>
         </div>
-        <div className="ph-logos" aria-label="Accreditations and protocols">
-          <div className="ph-badge">
-            ✓ DOH
-            <br />
-            Accredited
-          </div>
-          <div className="ph-badge">
-            ✓ PhilHealth
-            <br />
-            Accredited
-          </div>
-          <div className="ph-badge">
-            ✓ ABP-Z
-            <br />
-            Package
-          </div>
-          <div className="ph-badge">
-            ✓ WHO
-            <br />
-            Protocol
-          </div>
-        </div>
+        <TrustBadges variant="band" />
       </div>
     </section>
   );

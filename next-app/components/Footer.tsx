@@ -9,6 +9,9 @@ export default function Footer() {
         DOH-Accredited · PhilHealth Partner · © 2026 ARC Anti Rabies Clinic. All
         rights reserved.
       </div>
+      <div className="footer-links">
+        <a href="/privacy">Privacy Policy</a>
+      </div>
       <div className="footer-warning">
         ⚠️ If you have been bitten, do not rely solely on this website. Go to
         the nearest ARC branch or hospital emergency room immediately.

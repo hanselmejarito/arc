@@ -124,6 +124,13 @@ export default function Contact() {
                 errors={state.errors}
                 className="form-error show"
               />
+              <p className="form-privacy">
+                By sending this message, you agree that ARC may use your name,
+                email, phone, and message to respond to your inquiry, as
+                described in our{" "}
+                <a href="/privacy">Privacy Policy</a>. Do not use this form for
+                emergencies — go to the nearest branch or call us.
+              </p>
               <button
                 className="btn-primary"
                 type="submit"

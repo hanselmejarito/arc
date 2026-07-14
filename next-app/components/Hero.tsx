@@ -1,5 +1,6 @@
 import BranchMap from "./BranchMap";
 import ScrollLink from "./ScrollLink";
+import TrustBadges from "./TrustBadges";
 
 export default function Hero() {
   return (
@@ -21,6 +22,7 @@ export default function Hero() {
             prophylaxis, pre-exposure vaccination, and wound care across 11
             branches in Nueva Ecija and Tarlac.
           </p>
+          <TrustBadges variant="hero" />
           <div className="hero-actions">
             <ScrollLink href="#branches" targetId="branches" className="btn-primary">
               <span aria-hidden="true">📍</span> Find a Branch
@@ -42,7 +44,11 @@ export default function Hero() {
               <div className="stat-num">Daily</div>
               <div className="stat-label">Clinic Availability</div>
             </ScrollLink>
-            <ScrollLink href="#faq" targetId="faq" className="hero-stat-link">
+            <ScrollLink
+              href="#accreditation"
+              targetId="accreditation"
+              className="hero-stat-link"
+            >
               <div className="stat-num">5</div>
               <div className="stat-label">Accredited Branches</div>
             </ScrollLink>
