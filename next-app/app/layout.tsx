@@ -33,20 +33,11 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `${SITE_NAME} | 11 Branches`,
     description: SITE_DESCRIPTION,
-    images: [
-      {
-        url: "/arc_logo.jpg",
-        width: 512,
-        height: 512,
-        alt: `${SITE_NAME} logo`,
-      },
-    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: `${SITE_NAME} | 11 Branches`,
     description: SITE_DESCRIPTION,
-    images: ["/arc_logo.jpg"],
   },
   robots: {
     index: true,
