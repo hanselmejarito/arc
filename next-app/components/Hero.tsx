@@ -1,0 +1,61 @@
+import BranchMap from "./BranchMap";
+
+export default function Hero() {
+  return (
+    <section className="hero" aria-labelledby="hero-title">
+      <div className="hero-inner">
+        <div>
+          <div className="hero-badge">
+            DOH-Accredited · PhilHealth Partner
+          </div>
+          <h1 className="hero-title" id="hero-title">
+            Fast, Trusted
+            <br />
+            <em>Anti-Rabies</em>
+            <br />
+            Treatment Near You
+          </h1>
+          <p className="hero-subtitle">
+            ARC Anti Rabies Clinic provides immediate post-exposure
+            prophylaxis, pre-exposure vaccination, and wound care across 11
+            branches in Nueva Ecija and Tarlac.
+          </p>
+          <div className="hero-actions">
+            <a href="#branches" className="btn-primary">
+              <span aria-hidden="true">📍</span> Find a Branch
+            </a>
+            <a href="#what-to-do" className="btn-secondary">
+              What To Do After a Bite →
+            </a>
+          </div>
+          <div className="hero-stats">
+            <a href="#branches" className="hero-stat-link">
+              <div className="stat-num">11</div>
+              <div className="stat-label">Branches</div>
+            </a>
+            <a href="#branches" className="hero-stat-link">
+              <div className="stat-num">Daily</div>
+              <div className="stat-label">Clinic Availability</div>
+            </a>
+            <a href="#faq" className="hero-stat-link">
+              <div className="stat-num">5</div>
+              <div className="stat-label">Accredited Branches</div>
+            </a>
+            <a href="#services" className="hero-stat-link">
+              <div className="stat-num">10+</div>
+              <div className="stat-label">Years of Service</div>
+            </a>
+          </div>
+        </div>
+        <div className="hero-visual">
+          <div className="hero-map-wrap">
+            <BranchMap />
+          </div>
+          <div className="hero-map-caption">
+            11 BRANCHES · NUEVA ECIJA &amp; TARLAC
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,82 @@
+import type { Branch } from "@/data/branches";
+
+const shapePaths: Record<Branch["mapShape"], React.ReactNode> = {
+  cross: (
+    <>
+      <line x1="0" y1="70" x2="300" y2="70" />
+      <line x1="150" y1="0" x2="150" y2="140" />
+    </>
+  ),
+  roads: (
+    <>
+      <line x1="0" y1="35" x2="300" y2="35" />
+      <line x1="0" y1="105" x2="300" y2="105" />
+    </>
+  ),
+  circle: <circle cx="150" cy="70" r="50" fill="none" />,
+  triangle: <polygon points="150,10 290,130 10,130" fill="none" />,
+  waves: (
+    <path d="M0 100 Q75 20 150 70 Q225 120 300 40" fill="none" />
+  ),
+  box: <rect x="50" y="20" width="200" height="100" fill="none" />,
+};
+
+export default function BranchCard({ branch }: { branch: Branch }) {
+  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.mapQuery)}`;
+
+  return (
+    <article className="branch-card">
+      <div className="branch-map" style={{ background: branch.mapStyle }}>
+        <svg
+          className="branch-map-lines"
+          viewBox="0 0 300 140"
+          aria-hidden="true"
+        >
+          {shapePaths[branch.mapShape]}
+        </svg>
+        <div className="branch-pin" aria-hidden="true">
+          📍
+        </div>
+        <div className="branch-num-badge">
+          Branch {branch.number} · {branch.brand}
+          {branch.main ? " · Main" : ""}
+        </div>
+        <div className="branch-status open">Open</div>
+      </div>
+      <div className="branch-info">
+        <h3 className="branch-name">{branch.name}</h3>
+        <div className="branch-address">
+          <span aria-hidden="true">📍</span>
+          <span>{branch.address}</span>
+        </div>
+        <div className="branch-meta">
+          <div className="branch-meta-item">🕐 {branch.hours}</div>
+          <div className="branch-meta-item">
+            {branch.accredited
+              ? "✓ PhilHealth · DOH Accredited"
+              : "💊 PEP · PrEP · RIG"}
+          </div>
+        </div>
+        <a href={`tel:${branch.phoneHref}`} className="branch-tel">
+          📞 {branch.phone}
+        </a>
+        <div className="branch-actions">
+          <a
+            className="branch-btn"
+            href={directionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            📍 Directions
+          </a>
+          <a
+            className="branch-btn branch-btn-call"
+            href={`tel:${branch.phoneHref}`}
+          >
+            📞 Call
+          </a>
+        </div>
+      </div>
+    </article>
+  );
+}

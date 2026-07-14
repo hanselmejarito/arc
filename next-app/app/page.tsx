@@ -1,37 +1,27 @@
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
-import LegacyClient from "./legacy-client";
+import AccreditationBand from "@/components/AccreditationBand";
+import BiteSteps from "@/components/BiteSteps";
+import Branches from "@/components/Branches";
+import Contact from "@/components/Contact";
+import FAQ from "@/components/FAQ";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import Services from "@/components/Services";
 
 export default function Home() {
-  const source = readFileSync(
-    join(process.cwd(), "..", "arc-anti-rabies-clinic.html"),
-    "utf8",
-  );
-
-  const styles = Array.from(
-    source.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi),
-    (match) => match[1],
-  ).join("\n");
-
-  const bodyMatch = source.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
-  const body = (bodyMatch?.[1] ?? "")
-    .replace(/<script[\s\S]*?<\/script>/gi, "")
-    .replaceAll('src="arc_logo.jpg"', 'src="/arc_logo.jpg"')
-    .replaceAll('href="arc_logo.jpg"', 'href="/arc_logo.jpg"');
-
-  const scripts = Array.from(
-    source.matchAll(/<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi),
-    (match) => match[1].trim(),
-  ).filter(Boolean);
-
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: styles }} />
-      <main
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{ __html: body }}
-      />
-      <LegacyClient scripts={scripts} />
+      <Header />
+      <main>
+        <Hero />
+        <Services />
+        <BiteSteps />
+        <Branches />
+        <AccreditationBand />
+        <FAQ />
+        <Contact />
+      </main>
+      <Footer />
     </>
   );
 }

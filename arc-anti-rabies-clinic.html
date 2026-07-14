@@ -1000,13 +1000,13 @@ footer span { color: rgba(255,255,255,.7); font-weight: 600; }
           <div class="stat-num">11</div>
           <div class="stat-label">Branches</div>
         </a>
-        <a href="tel:09302636445" class="hero-stat-link">
-          <div class="stat-num">24/7</div>
-          <div class="stat-label">Emergency Line</div>
+        <a href="#branches" class="hero-stat-link">
+          <div class="stat-num">Daily</div>
+          <div class="stat-label">Clinic Availability</div>
         </a>
         <a href="#faq" class="hero-stat-link">
-          <div class="stat-num">100%</div>
-          <div class="stat-label">PhilHealth Accredited</div>
+          <div class="stat-num">5</div>
+          <div class="stat-label">Accredited Branches</div>
         </a>
         <a href="#services" class="hero-stat-link">
           <div class="stat-num">10+</div>
@@ -1034,7 +1034,7 @@ footer span { color: rgba(255,255,255,.7); font-weight: 600; }
         <div class="service-icon red">💉</div>
         <div class="service-name">Post-Exposure Prophylaxis (PEP)</div>
         <div class="service-desc">Immediate anti-rabies vaccine series for animal bites, scratches, or saliva contact. Administered on Days 0, 3, 7, and 28 following the WHO-recommended intradermal schedule.</div>
-        <div class="service-price">✓ PhilHealth Covered (₱5,850 package)</div>
+        <div class="service-price">✓ Free vaccination for eligible members at 5 accredited branches</div>
       </div>
       <div class="service-card clickable" data-scroll="#contact" tabindex="0" role="button">
         <div class="service-icon teal">🛡️</div>
@@ -1115,6 +1115,7 @@ footer span { color: rgba(255,255,255,.7); font-weight: 600; }
       </div>
       <div class="branch-filter">
         <button class="filter-btn active" onclick="filterBranch('all', this)">All (11)</button>
+        <button class="filter-btn" onclick="filterBranch('accredited', this)">Accredited (5)</button>
         <button class="filter-btn" onclick="filterBranch('nueva-ecija', this)">Nueva Ecija (10)</button>
         <button class="filter-btn" onclick="filterBranch('tarlac', this)">Tarlac (1)</button>
       </div>
@@ -1122,122 +1123,122 @@ footer span { color: rgba(255,255,255,.7); font-weight: 600; }
 
     <div class="branches-grid" id="branchGrid">
 
-      <!-- Branch 1 -->
-      <div class="branch-card" data-province="nueva-ecija" data-map-query="JB LACSON BLDG, PARAIRO STREET, COR SARANAY DISTRICT, Guimba, Nueva Ecija">
+      <!-- Branch 2 -->
+      <div class="branch-card" data-branch-number="2" data-accredited="true" data-province="nueva-ecija" data-map-query="JB Lacson Bldg, L. De Ocampo St corner Paraiso St, Saranay District, Guimba, Nueva Ecija">
         <div class="branch-map" style="background:linear-gradient(135deg,#e8f0f8,#ccddf0);">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.15" viewBox="0 0 300 140"><line x1="0" y1="70" x2="300" y2="70" stroke="#888" stroke-width="12"/><line x1="150" y1="0" x2="150" y2="140" stroke="#888" stroke-width="6"/></svg>
           <div class="branch-pin">📍</div>
-          <div class="branch-num-badge">Branch 1 · ARC · Main</div>
+          <div class="branch-num-badge">Branch 2 · ARC · Main</div>
           <div class="branch-status open">Open</div>
         </div>
         <div class="branch-info">
           <div class="branch-name">ARC Guimba — Main Branch</div>
           <div class="branch-address">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            JB LACSON BLDG, PARAIRO STREET, COR SARANAY DISTRICT, Guimba, Nueva Ecija
+            JB Lacson Bldg., L. De Ocampo St. corner Paraiso St., Saranay District, Guimba, Nueva Ecija
           </div>
           <div class="branch-meta">
-            <div class="branch-meta-item">🕐 Mon–Sat 7AM–6PM</div>
-            <div class="branch-meta-item">💊 PEP · PrEP · RIG</div>
+            <div class="branch-meta-item">🕐 Daily 7AM–11PM</div>
+            <div class="branch-meta-item">✓ PhilHealth · DOH Accredited</div>
           </div>
-          <a href="tel:09302636445" class="branch-tel">📞 0930 263 6445 / 0966 180 4084</a>
+          <a href="tel:09469451531" class="branch-tel">📞 0946 945 1531</a>
         </div>
       </div>
 
-      <!-- Branch 2 -->
-      <div class="branch-card" data-province="nueva-ecija" data-map-query="ARC Anti Rabies Clinic Baloc Sto Domingo Nueva Ecija Philippines">
+      <!-- Branch 1 -->
+      <div class="branch-card" data-branch-number="1" data-province="nueva-ecija" data-map-query="MLD Bldg Purok 3 Baloc Sto Domingo Nueva Ecija">
         <div class="branch-map" style="background:linear-gradient(135deg,#f0e8e8,#f0d0d0);">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.15" viewBox="0 0 300 140"><line x1="0" y1="50" x2="300" y2="50" stroke="#888" stroke-width="10"/><line x1="150" y1="0" x2="150" y2="140" stroke="#888" stroke-width="5"/></svg>
           <div class="branch-pin">📍</div>
-          <div class="branch-num-badge">Branch 2 · ARC</div>
+          <div class="branch-num-badge">Branch 1 · ARC</div>
           <div class="branch-status open">Open</div>
         </div>
         <div class="branch-info">
           <div class="branch-name">ARC Baloc Branch</div>
           <div class="branch-address">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            ARC Anti Rabies Clinic, Baloc, Sto. Domingo, Nueva Ecija
+            MLD Bldg., Purok 3, Baloc, Sto. Domingo, Nueva Ecija
           </div>
           <div class="branch-meta">
-            <div class="branch-meta-item">🕐 Mon–Sat 7AM–6PM</div>
+            <div class="branch-meta-item">🕐 Daily 8AM–5PM</div>
             <div class="branch-meta-item">💊 PEP · PrEP · RIG</div>
           </div>
-          <a href="tel:09302636445" class="branch-tel">📞 0930 263 6445</a>
+          <a href="tel:09536655592" class="branch-tel">📞 0953 665 5592</a>
         </div>
       </div>
 
-      <!-- Branch 3 -->
-      <div class="branch-card" data-province="nueva-ecija" data-map-query="ARC Anti Rabies Clinic Talavera Nueva Ecija Philippines">
+      <!-- Branch 5 -->
+      <div class="branch-card" data-branch-number="5" data-province="nueva-ecija" data-map-query="Maharlika Highway Mestrang Kikay Talavera Nueva Ecija">
         <div class="branch-map" style="background:linear-gradient(135deg,#f8e8f0,#f0c8e0);">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.15" viewBox="0 0 300 140"><line x1="0" y1="35" x2="300" y2="35" stroke="#888" stroke-width="8"/><line x1="0" y1="105" x2="300" y2="105" stroke="#888" stroke-width="6"/></svg>
           <div class="branch-pin">📍</div>
-          <div class="branch-num-badge">Branch 3 · ARC</div>
+          <div class="branch-num-badge">Branch 5 · ARC</div>
           <div class="branch-status open">Open</div>
         </div>
         <div class="branch-info">
           <div class="branch-name">ARC Talavera Branch</div>
           <div class="branch-address">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            ARC Anti Rabies Clinic, Talavera, Nueva Ecija
+            Maharlika Highway, Brgy. Mestrang Kikay, Talavera, Nueva Ecija
           </div>
           <div class="branch-meta">
-            <div class="branch-meta-item">🕐 Mon–Sat 8AM–5PM</div>
+            <div class="branch-meta-item">🕐 Daily 7AM–5PM</div>
             <div class="branch-meta-item">💊 PEP · PrEP · RIG</div>
           </div>
-          <a href="tel:09302636445" class="branch-tel">📞 0930 263 6445</a>
+          <a href="tel:09557507872" class="branch-tel">📞 0955 750 7872</a>
         </div>
       </div>
 
-      <!-- Branch 4 -->
-      <div class="branch-card" data-province="nueva-ecija" data-map-query="ARC Anti Rabies Clinic Cabanatuan City Nueva Ecija Philippines">
+      <!-- Branch 6 -->
+      <div class="branch-card" data-branch-number="6" data-accredited="true" data-province="nueva-ecija" data-map-query="Stall No 20 Mabini Arcade Mabini St Quezon District Cabanatuan City Nueva Ecija">
         <div class="branch-map" style="background:linear-gradient(135deg,#e8f8ee,#cceedc);">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.15" viewBox="0 0 300 140"><circle cx="150" cy="70" r="50" stroke="#888" stroke-width="8" fill="none"/></svg>
           <div class="branch-pin">📍</div>
-          <div class="branch-num-badge">Branch 4 · ARC</div>
+          <div class="branch-num-badge">Branch 6 · ARC</div>
           <div class="branch-status open">Open</div>
         </div>
         <div class="branch-info">
           <div class="branch-name">ARC Cabanatuan City Branch</div>
           <div class="branch-address">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            ARC Anti Rabies Clinic, Cabanatuan City, Nueva Ecija
+            Stall No. 20, Mabini Arcade, Mabini St., Quezon District, Cabanatuan City, Nueva Ecija
           </div>
           <div class="branch-meta">
-            <div class="branch-meta-item">🕐 Mon–Sat 7AM–6PM</div>
-            <div class="branch-meta-item">💊 PEP · PrEP · RIG</div>
+            <div class="branch-meta-item">🕐 Daily 7AM–11PM</div>
+            <div class="branch-meta-item">✓ PhilHealth · DOH Accredited</div>
           </div>
-          <a href="tel:09302636445" class="branch-tel">📞 0930 263 6445</a>
+          <a href="tel:09525282411" class="branch-tel">📞 0952 528 2411</a>
         </div>
       </div>
 
-      <!-- Branch 5 -->
-      <div class="branch-card" data-province="nueva-ecija" data-map-query="ARC Anti Rabies Clinic Palayan City Nueva Ecija Philippines">
+      <!-- Branch 4 -->
+      <div class="branch-card" data-branch-number="4" data-accredited="true" data-province="nueva-ecija" data-map-query="Aurora Road Caimito Palayan City Nueva Ecija">
         <div class="branch-map" style="background:linear-gradient(135deg,#eef8e8,#d0eec4);">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.15" viewBox="0 0 300 140"><polygon points="150,10 290,130 10,130" stroke="#888" stroke-width="7" fill="none"/></svg>
           <div class="branch-pin">📍</div>
-          <div class="branch-num-badge">Branch 5 · ARC</div>
+          <div class="branch-num-badge">Branch 4 · ARC</div>
           <div class="branch-status open">Open</div>
         </div>
         <div class="branch-info">
           <div class="branch-name">ARC Palayan City Branch</div>
           <div class="branch-address">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            ARC Anti Rabies Clinic, Palayan City, Nueva Ecija
+            Aurora Road, Caimito, Palayan City, Nueva Ecija
           </div>
           <div class="branch-meta">
-            <div class="branch-meta-item">🕐 Mon–Sat 7AM–6PM</div>
-            <div class="branch-meta-item">💊 PEP · PrEP · RIG</div>
+            <div class="branch-meta-item">🕐 Daily 8AM–8PM</div>
+            <div class="branch-meta-item">✓ PhilHealth · DOH Accredited</div>
           </div>
-          <a href="tel:09661804084" class="branch-tel">📞 0966 180 4084</a>
+          <a href="tel:09970968023" class="branch-tel">📞 0997 096 8023</a>
         </div>
       </div>
 
-      <!-- Branch 6 -->
-      <div class="branch-card" data-province="nueva-ecija" data-map-query="ARC Anti Rabies Clinic Gapan City Nueva Ecija Philippines">
+      <!-- Branch 9 -->
+      <div class="branch-card" data-branch-number="9" data-province="nueva-ecija" data-map-query="ARC Anti Rabies Clinic Gapan City Nueva Ecija Philippines">
         <div class="branch-map" style="background:linear-gradient(135deg,#f8f0e8,#f0dcc0);">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.15" viewBox="0 0 300 140"><rect x="50" y="20" width="200" height="100" stroke="#888" stroke-width="8" fill="none"/></svg>
           <div class="branch-pin">📍</div>
-          <div class="branch-num-badge">Branch 6 · ARC</div>
+          <div class="branch-num-badge">Branch 9 · ARC</div>
           <div class="branch-status open">Open</div>
         </div>
         <div class="branch-info">
@@ -1247,15 +1248,15 @@ footer span { color: rgba(255,255,255,.7); font-weight: 600; }
             ARC Anti Rabies Clinic, Gapan City, Nueva Ecija
           </div>
           <div class="branch-meta">
-            <div class="branch-meta-item">🕐 Mon–Sat 7AM–6PM</div>
+            <div class="branch-meta-item">🕐 Daily 8AM–6PM</div>
             <div class="branch-meta-item">💊 PEP · PrEP · RIG</div>
           </div>
-          <a href="tel:09302636445" class="branch-tel">📞 0930 263 6445</a>
+          <a href="tel:09757541622" class="branch-tel">📞 0975 754 1622</a>
         </div>
       </div>
 
       <!-- Branch 7 -->
-      <div class="branch-card" data-province="nueva-ecija" data-map-query="ARC Anti Rabies Clinic Talugtug Nueva Ecija Philippines">
+      <div class="branch-card" data-branch-number="7" data-province="nueva-ecija" data-map-query="ARC Anti Rabies Clinic Talugtug Nueva Ecija Philippines">
         <div class="branch-map" style="background:linear-gradient(135deg,#e8eef8,#c8d8f0);">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.15" viewBox="0 0 300 140"><path d="M0 100 Q75 20 150 70 Q225 120 300 40" stroke="#888" stroke-width="9" fill="none"/></svg>
           <div class="branch-pin">📍</div>
@@ -1266,18 +1267,18 @@ footer span { color: rgba(255,255,255,.7); font-weight: 600; }
           <div class="branch-name">ARC Talugtug Branch</div>
           <div class="branch-address">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            ARC Anti Rabies Clinic, Talugtug, Nueva Ecija
+            Zone 3, Talugtug, Nueva Ecija
           </div>
           <div class="branch-meta">
-            <div class="branch-meta-item">🕐 Mon–Sat 7AM–6PM</div>
+            <div class="branch-meta-item">🕐 Daily 7AM–5PM</div>
             <div class="branch-meta-item">💊 PEP · PrEP · RIG</div>
           </div>
-          <a href="tel:09661804084" class="branch-tel">📞 0966 180 4084</a>
+          <a href="tel:09757845887" class="branch-tel">📞 0975 784 5887</a>
         </div>
       </div>
 
       <!-- Branch 8 -->
-      <div class="branch-card" data-province="nueva-ecija" data-map-query="ARC Anti Rabies Clinic Rizal Nueva Ecija Philippines">
+      <div class="branch-card" data-branch-number="8" data-accredited="true" data-province="nueva-ecija" data-map-query="ARC Anti Rabies Clinic Rizal Nueva Ecija Philippines">
         <div class="branch-map" style="background:linear-gradient(135deg,#f8f8e8,#eeeed0);">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.15" viewBox="0 0 300 140"><path d="M0 70 L100 20 L200 90 L300 30" stroke="#888" stroke-width="9" fill="none"/></svg>
           <div class="branch-pin">📍</div>
@@ -1288,40 +1289,40 @@ footer span { color: rgba(255,255,255,.7); font-weight: 600; }
           <div class="branch-name">ARC Rizal Branch</div>
           <div class="branch-address">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            ARC Anti Rabies Clinic, Rizal, Nueva Ecija
+            RKBD Bldg., Poblacion Sur, Rizal, Nueva Ecija
           </div>
           <div class="branch-meta">
-            <div class="branch-meta-item">🕐 Mon–Sat 8AM–5PM</div>
-            <div class="branch-meta-item">💊 PEP · PrEP · RIG</div>
+            <div class="branch-meta-item">🕐 Daily 7AM–5PM</div>
+            <div class="branch-meta-item">✓ PhilHealth · DOH Accredited</div>
           </div>
-          <a href="tel:09302636445" class="branch-tel">📞 0930 263 6445</a>
+          <a href="tel:09652100188" class="branch-tel">📞 0965 210 0188</a>
         </div>
       </div>
 
-      <!-- Branch 9 -->
-      <div class="branch-card" data-province="tarlac" data-map-query="ARC Anti Rabies Clinic Paniqui Tarlac Philippines">
+      <!-- Branch 3 -->
+      <div class="branch-card" data-branch-number="3" data-province="tarlac" data-map-query="BZMAN Center Zamora St Poblacion Sur Paniqui Tarlac">
         <div class="branch-map" style="background:linear-gradient(135deg,#e8f4f8,#bcd8ec);">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.15" viewBox="0 0 300 140"><circle cx="80" cy="70" r="40" stroke="#888" stroke-width="7" fill="none"/><circle cx="220" cy="70" r="40" stroke="#888" stroke-width="7" fill="none"/></svg>
           <div class="branch-pin">📍</div>
-          <div class="branch-num-badge">Branch 9 · ARC</div>
+          <div class="branch-num-badge">Branch 3 · ARC</div>
           <div class="branch-status open">Open</div>
         </div>
         <div class="branch-info">
           <div class="branch-name">ARC Paniqui Branch</div>
           <div class="branch-address">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            ARC Anti Rabies Clinic, Paniqui, Tarlac
+            BZMAN Center, Zamora St., Poblacion Sur, Paniqui, Tarlac
           </div>
           <div class="branch-meta">
-            <div class="branch-meta-item">🕐 Mon–Sat 7AM–6PM</div>
+            <div class="branch-meta-item">🕐 Daily 7AM–5PM</div>
             <div class="branch-meta-item">💊 PEP · PrEP · RIG</div>
           </div>
-          <a href="tel:09661804084" class="branch-tel">📞 0966 180 4084</a>
+          <a href="tel:09531278974" class="branch-tel">📞 0953 127 8974</a>
         </div>
       </div>
 
       <!-- Branch 10 -->
-      <div class="branch-card" data-province="nueva-ecija" data-map-query="LIFEMED Anti Rabies Clinic Science City of Munoz Nueva Ecija Philippines">
+      <div class="branch-card" data-branch-number="10" data-accredited="true" data-province="nueva-ecija" data-map-query="2F Queseng Bldg D Delos Santos St Poblacion East Science City of Munoz Nueva Ecija">
         <div class="branch-map" style="background:linear-gradient(135deg,#e8f8ee,#b8e8c8);">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.15" viewBox="0 0 300 140"><path d="M30 10 L270 10 L270 130 L30 130 Z" stroke="#888" stroke-width="7" fill="none"/></svg>
           <div class="branch-pin">📍</div>
@@ -1332,18 +1333,18 @@ footer span { color: rgba(255,255,255,.7); font-weight: 600; }
           <div class="branch-name">LIFEMED Munoz Branch</div>
           <div class="branch-address">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            LIFEMED Anti Rabies Clinic, Science City of Munoz, Nueva Ecija
+            2/F Queseng Bldg., D. Delos Santos St., Poblacion East, Science City of Muñoz, Nueva Ecija
           </div>
           <div class="branch-meta">
-            <div class="branch-meta-item">🕐 Mon–Sat 7AM–6PM</div>
-            <div class="branch-meta-item">💊 PEP · PrEP · RIG</div>
+            <div class="branch-meta-item">🕐 Daily 8AM–6PM</div>
+            <div class="branch-meta-item">✓ PhilHealth · DOH Accredited</div>
           </div>
-          <a href="tel:09661804084" class="branch-tel">📞 0966 180 4084</a>
+          <a href="tel:09531058993" class="branch-tel">📞 0953 105 8993 / 0993 061 3068</a>
         </div>
       </div>
 
       <!-- Branch 11 -->
-      <div class="branch-card" data-province="nueva-ecija" data-map-query="VAXGUARD Anti Rabies Clinic Laur Nueva Ecija Philippines">
+      <div class="branch-card" data-branch-number="11" data-province="nueva-ecija" data-map-query="Gen Tinio St Brgy 1 Laur Nueva Ecija">
         <div class="branch-map" style="background:linear-gradient(135deg,#e8eef8,#c0d8f8);">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.15" viewBox="0 0 300 140"><line x1="0" y1="70" x2="300" y2="70" stroke="#888" stroke-width="14"/><circle cx="150" cy="70" r="45" stroke="#888" stroke-width="6" fill="none"/></svg>
           <div class="branch-pin">📍</div>
@@ -1354,13 +1355,13 @@ footer span { color: rgba(255,255,255,.7); font-weight: 600; }
           <div class="branch-name">VAXGUARD Laur Branch</div>
           <div class="branch-address">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            VAXGUARD Anti Rabies Clinic, Laur, Nueva Ecija
+            Gen. Tinio St., Brgy. 1, Laur, Nueva Ecija
           </div>
           <div class="branch-meta">
-            <div class="branch-meta-item">🕐 Mon–Sat 8AM–5PM</div>
+            <div class="branch-meta-item">🕐 Daily 8AM–5PM</div>
             <div class="branch-meta-item">💊 PEP · PrEP · RIG</div>
           </div>
-          <a href="tel:09302636445" class="branch-tel">📞 0930 263 6445</a>
+          <a href="tel:09976527942" class="branch-tel">📞 0997 652 7942</a>
         </div>
       </div>
 
@@ -1373,8 +1374,8 @@ footer span { color: rgba(255,255,255,.7); font-weight: 600; }
 <div class="philhealth-band">
   <div class="philhealth-inner">
     <div>
-      <div class="ph-title">PhilHealth Accredited &amp; DOH Licensed</div>
-      <div class="ph-sub">ARC Anti Rabies Clinic is accredited under the PhilHealth Animal Bite Treatment Package (ABP-Z), covering eligible members for anti-rabies vaccines and wound treatment. Bring your PhilHealth ID card on your first visit.</div>
+      <div class="ph-title">5 PhilHealth Accredited &amp; DOH Licensed Branches</div>
+      <div class="ph-sub">Free anti-rabies vaccination services for eligible members are available at LIFEMED Muñoz and the ARC Guimba, Cabanatuan, Rizal, and Palayan branches. Bring your PhilHealth ID card and call ahead to confirm eligibility.</div>
     </div>
     <div class="ph-logos">
       <div class="ph-badge">✓ DOH<br>Accredited</div>
@@ -1406,7 +1407,7 @@ footer span { color: rgba(255,255,255,.7); font-weight: 600; }
           Is treatment free at ARC clinics?
           <svg class="chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
         </div>
-        <div class="faq-a">PhilHealth members may have their treatment covered under the Animal Bite Treatment Package (₱5,850 coverage). Non-members may avail of affordable walk-in rates. Bring your PhilHealth ID card on your first visit. Our staff will assist you with the paperwork.</div>
+        <div class="faq-a">Eligible PhilHealth members may receive free anti-rabies vaccination services at our five accredited branches: LIFEMED Muñoz and ARC Guimba, Cabanatuan, Rizal, and Palayan. Non-members may avail of affordable walk-in rates. Bring your PhilHealth ID card and call ahead to confirm eligibility.</div>
       </div>
 
       <div class="faq-item">
@@ -1516,10 +1517,10 @@ footer span { color: rgba(255,255,255,.7); font-weight: 600; }
         <div class="contact-item">
           <div class="ci-icon">📞</div>
           <div>
-            <div class="ci-label">Emergency Hotlines</div>
+            <div class="ci-label">Main Branch Contact</div>
             <div class="ci-val">
-              <a href="tel:09302636445">0930 263 6445</a><br>
-              <a href="tel:09661804084">0966 180 4084</a>
+              <a href="tel:09469451531">0946 945 1531</a><br>
+              <span style="color:rgba(255,255,255,.45);font-size:12px">See branch cards for local numbers.</span>
             </div>
           </div>
         </div>
@@ -1527,28 +1528,28 @@ footer span { color: rgba(255,255,255,.7); font-weight: 600; }
           <div class="ci-icon">✉️</div>
           <div>
             <div class="ci-label">Email</div>
-            <div class="ci-val"><a href="mailto:lykatenorio2@gmail.com" style="color:var(--yellow)">lykatenorio2@gmail.com</a></div>
+            <div class="ci-val"><a href="mailto:arcantirabisclinic@gmail.com" style="color:var(--yellow)">arcantirabisclinic@gmail.com</a></div>
           </div>
         </div>
         <div class="contact-item">
           <div class="ci-icon">📍</div>
           <div>
             <div class="ci-label">Main Office</div>
-            <div class="ci-val">JB LACSON BLDG, PARAIRO STREET,<br>COR SARANAY DISTRICT, Guimba,<br>Nueva Ecija</div>
+            <div class="ci-val">JB Lacson Bldg., L. De Ocampo St. corner<br>Paraiso St., Saranay District, Guimba,<br>Nueva Ecija</div>
           </div>
         </div>
         <div class="contact-item">
           <div class="ci-icon">🕐</div>
           <div>
             <div class="ci-label">Clinic Hours</div>
-            <div class="ci-val">Monday – Saturday<br>7:00 AM – 6:00 PM<br><span style="color:rgba(255,255,255,.45);font-size:12px">*Hours vary by branch. Call ahead to confirm.</span></div>
+            <div class="ci-val">Open Monday – Sunday<br><span style="color:rgba(255,255,255,.45);font-size:12px">*Hours vary by branch. Call ahead to confirm.</span></div>
           </div>
         </div>
         <div class="contact-item">
           <div class="ci-icon">📘</div>
           <div>
             <div class="ci-label">Follow Us</div>
-            <div class="ci-val"><a href="https://www.facebook.com/profile.php?id=61559824464639" target="_blank" rel="noopener noreferrer" style="color:var(--yellow)">facebook.com/ARC Anti Rabies Clinic — Guimba</a></div>
+            <div class="ci-val"><a href="https://www.facebook.com/profile.php?id=61591336026166" target="_blank" rel="noopener noreferrer" style="color:var(--yellow)">ARC - Animal Bite Center</a></div>
           </div>
         </div>
       </div>
@@ -1599,12 +1600,15 @@ function toggleFaq(el) {
   }
 }
 
-function filterBranch(province, btn) {
+function filterBranch(filter, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   let visible = 0;
   document.querySelectorAll('.branch-card').forEach(card => {
-    if (province === 'all' || card.dataset.province === province) {
+    const matches = filter === 'all'
+      || card.dataset.province === filter
+      || (filter === 'accredited' && card.dataset.accredited === 'true');
+    if (matches) {
       card.classList.remove('hidden');
       visible++;
     } else {
@@ -1632,8 +1636,17 @@ function getBranchAddress(card) {
 
 function getBranchPhone(card) {
   const telEl = card.querySelector('.branch-tel');
-  if (!telEl) return '09302636445';
+  if (!telEl) return '09469451531';
   return telEl.href.replace('tel:', '').split('/')[0].replace(/\s/g, '').trim();
+}
+
+function sortBranchCards() {
+  const grid = document.getElementById('branchGrid');
+  if (!grid) return;
+
+  [...grid.querySelectorAll('.branch-card')]
+    .sort((a, b) => Number(a.dataset.branchNumber) - Number(b.dataset.branchNumber))
+    .forEach(card => grid.appendChild(card));
 }
 
 function initBranchCards() {
@@ -1720,12 +1733,12 @@ function submitContact(e) {
 
   btn.disabled = true;
   btn.textContent = 'Opening email...';
-  window.location.href = 'mailto:lykatenorio2@gmail.com?subject=' + subject + '&body=' + body;
+  window.location.href = 'mailto:arcantirabisclinic@gmail.com?subject=' + subject + '&body=' + body;
 
   setTimeout(() => {
     btn.textContent = 'Message Sent ✓';
     btn.style.background = '#15803d';
-    successEl.textContent = 'Your email app should open. If not, email us at lykatenorio2@gmail.com';
+    successEl.textContent = 'Your email app should open. If not, email us at arcantirabisclinic@gmail.com';
     successEl.classList.add('show');
     btn.disabled = false;
   }, 800);
@@ -1739,6 +1752,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
+sortBranchCards();
 initBranchCards();
 initScrollTargets();
 </script>
