@@ -12,6 +12,9 @@ export const size = {
 
 export const contentType = "image/png";
 
+/** Bump when redesigning so Facebook/etc. re-fetch a new preview. */
+export const version = "2026-07-14-v5";
+
 export default async function OgImage() {
   const [logoData, instrumentSerif, dmSans] = await Promise.all([
     readFile(join(process.cwd(), "..", "arc_logo.jpg")),
@@ -34,7 +37,8 @@ export default async function OgImage() {
           display: "flex",
           position: "relative",
           overflow: "hidden",
-          background: "linear-gradient(135deg, #0a1628 0%, #1565c0 45%, #0d3d6e 100%)",
+          background:
+            "linear-gradient(135deg, #0a1628 0%, #1565c0 42%, #0d3d6e 100%)",
           fontFamily: "DM Sans",
         }}
       >
@@ -43,17 +47,28 @@ export default async function OgImage() {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse 55% 70% at 82% 48%, rgba(255,204,0,0.24) 0%, transparent 65%), radial-gradient(ellipse 40% 50% at 12% 82%, rgba(13,110,110,0.18) 0%, transparent 60%)",
+              "radial-gradient(ellipse 55% 70% at 82% 48%, rgba(255,204,0,0.26) 0%, transparent 65%), radial-gradient(ellipse 40% 50% at 10% 85%, rgba(13,110,110,0.2) 0%, transparent 60%)",
           }}
         />
+
+        {/* Grid texture */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+
         <div
           style={{
             position: "relative",
-            zIndex: 2,
             display: "flex",
             width: "100%",
             height: "100%",
-            padding: "56px 64px",
+            padding: "48px 56px",
             alignItems: "center",
             justifyContent: "space-between",
           }}
@@ -62,45 +77,53 @@ export default async function OgImage() {
             style={{
               display: "flex",
               flexDirection: "column",
-              maxWidth: 680,
+              maxWidth: 700,
             }}
           >
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 8,
-                marginBottom: 24,
-                padding: "8px 16px",
-                borderRadius: 999,
-                border: "1px solid rgba(255,255,255,0.15)",
-                background: "rgba(255,255,255,0.08)",
-                color: "rgba(255,255,255,0.82)",
-                fontSize: 18,
-                fontWeight: 600,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
+                gap: 14,
+                marginBottom: 22,
               }}
             >
               <div
                 style={{
-                  width: 8,
-                  height: 8,
-                  borderRadius: "50%",
-                  background: "#4ade80",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "8px 16px",
+                  borderRadius: 999,
+                  border: "1px solid rgba(255,255,255,0.16)",
+                  background: "rgba(255,255,255,0.08)",
+                  color: "rgba(255,255,255,0.88)",
+                  fontSize: 16,
+                  fontWeight: 700,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
                 }}
-              />
-              DOH-Accredited · PhilHealth Partner
+              >
+                <div
+                  style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: "50%",
+                    background: "#4ade80",
+                  }}
+                />
+                ARC Anti Rabies Clinic
+              </div>
             </div>
 
             <div
               style={{
                 display: "flex",
                 flexDirection: "column",
-                marginBottom: 20,
+                marginBottom: 18,
                 color: "#fff",
                 fontFamily: "Instrument Serif",
-                fontSize: 72,
+                fontSize: 68,
                 lineHeight: 1.02,
               }}
             >
@@ -113,49 +136,128 @@ export default async function OgImage() {
 
             <div
               style={{
-                maxWidth: 560,
-                marginBottom: 32,
-                color: "rgba(255,255,255,0.72)",
-                fontSize: 24,
-                lineHeight: 1.55,
+                maxWidth: 580,
+                marginBottom: 28,
+                color: "rgba(255,255,255,0.74)",
+                fontSize: 23,
+                lineHeight: 1.5,
               }}
             >
               11 branches across Nueva Ecija &amp; Tarlac. Open daily for PEP,
               PrEP, and wound care.
             </div>
 
-            <div style={{ display: "flex", gap: 16 }}>
+            <div style={{ display: "flex", gap: 12, marginBottom: 22 }}>
+              {[
+                ["DOH", "Accredited"],
+                ["PhilHealth", "Partner"],
+                ["ABP-Z", "Package"],
+                ["WHO", "Protocol"],
+              ].map(([label, detail]) => (
+                <div
+                  key={label}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                    padding: "10px 14px",
+                    borderRadius: 12,
+                    border: "1px solid rgba(255,255,255,0.14)",
+                    background: "rgba(255,255,255,0.08)",
+                    minWidth: 118,
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      width: 24,
+                      height: 24,
+                      flexShrink: 0,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: "50%",
+                      background: "rgba(74,222,128,0.2)",
+                    }}
+                  >
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                    >
+                      <path
+                        d="M2.5 6.2 5.2 8.8 9.5 3.5"
+                        stroke="#4ade80"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 2,
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: "#fff",
+                        fontSize: 15,
+                        fontWeight: 800,
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      {label}
+                    </span>
+                    <span
+                      style={{
+                        color: "rgba(255,255,255,0.58)",
+                        fontSize: 12,
+                        fontWeight: 600,
+                        letterSpacing: "0.04em",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {detail}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display: "flex", gap: 12 }}>
               {[
                 ["11", "Branches"],
-                ["Daily", "Availability"],
+                ["Daily", "Open"],
                 ["5", "Accredited"],
               ].map(([value, label]) => (
                 <div
                   key={label}
                   style={{
                     display: "flex",
-                    flexDirection: "column",
-                    minWidth: 120,
-                    padding: "14px 18px",
-                    borderRadius: 16,
-                    border: "1px solid rgba(255,255,255,0.12)",
-                    background: "rgba(255,255,255,0.06)",
+                    alignItems: "baseline",
+                    gap: 8,
+                    padding: "10px 16px",
+                    borderRadius: 999,
+                    border: "1px solid rgba(255,204,0,0.28)",
+                    background: "rgba(255,204,0,0.1)",
                   }}
                 >
                   <span
                     style={{
                       color: "#ffcc00",
-                      fontSize: 28,
-                      fontWeight: 700,
-                      lineHeight: 1.1,
+                      fontSize: 22,
+                      fontWeight: 800,
                     }}
                   >
                     {value}
                   </span>
                   <span
                     style={{
-                      color: "rgba(255,255,255,0.72)",
-                      fontSize: 16,
+                      color: "rgba(255,255,255,0.78)",
+                      fontSize: 15,
                       fontWeight: 600,
                     }}
                   >
@@ -171,40 +273,40 @@ export default async function OgImage() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              gap: 20,
+              gap: 18,
             }}
           >
             <div
               style={{
                 display: "flex",
-                width: 280,
-                height: 280,
+                width: 300,
+                height: 300,
                 alignItems: "center",
                 justifyContent: "center",
-                borderRadius: 32,
-                border: "4px solid rgba(255,255,255,0.14)",
-                background: "rgba(255,255,255,0.08)",
-                boxShadow: "0 24px 60px rgba(0,0,0,0.28)",
+                borderRadius: "50%",
+                border: "6px solid rgba(255,255,255,0.2)",
+                background: "rgba(255,255,255,0.1)",
+                boxShadow: "0 28px 64px rgba(0,0,0,0.35)",
               }}
             >
               <img
                 src={logoSrc}
                 alt=""
-                width={220}
-                height={220}
+                width={250}
+                height={250}
                 style={{ borderRadius: "50%" }}
               />
             </div>
             <div
               style={{
-                color: "rgba(255,255,255,0.78)",
-                fontSize: 20,
-                fontWeight: 600,
-                letterSpacing: "0.06em",
+                color: "rgba(255,255,255,0.72)",
+                fontSize: 16,
+                fontWeight: 700,
+                letterSpacing: "0.08em",
                 textTransform: "uppercase",
               }}
             >
-              arcantirabisclinic.vercel.app
+              Nueva Ecija &amp; Tarlac
             </div>
           </div>
         </div>

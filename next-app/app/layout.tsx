@@ -33,11 +33,20 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `${SITE_NAME} | 11 Branches`,
     description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} — Fast, trusted anti-rabies treatment across 11 branches`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} | 11 Branches`,
     description: SITE_DESCRIPTION,
+    images: ["/twitter-image"],
   },
   robots: {
     index: true,

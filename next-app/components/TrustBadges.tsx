@@ -1,3 +1,4 @@
+import CheckIcon from "./CheckIcon";
 import ScrollLink from "./ScrollLink";
 
 export const TRUST_BADGES = [
@@ -17,9 +18,14 @@ export default function TrustBadges({ variant = "hero" }: TrustBadgesProps) {
       <div className="ph-logos" aria-label="Accreditations and protocols">
         {TRUST_BADGES.map((badge) => (
           <div className="ph-badge" key={badge.label}>
-            ✓ {badge.label}
-            <br />
-            {badge.detail}
+            <span className="ph-badge-check" aria-hidden="true">
+              <CheckIcon size={11} />
+            </span>
+            <span className="ph-badge-text">
+              {badge.label}
+              <br />
+              {badge.detail}
+            </span>
           </div>
         ))}
       </div>
@@ -36,7 +42,7 @@ export default function TrustBadges({ variant = "hero" }: TrustBadgesProps) {
           className="hero-trust-badge"
         >
           <span className="hero-trust-check" aria-hidden="true">
-            ✓
+            <CheckIcon />
           </span>
           <span className="hero-trust-text">
             <strong>{badge.label}</strong>
