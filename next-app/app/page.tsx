@@ -6,6 +6,7 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Reveal from "@/components/Reveal";
 import Services from "@/components/Services";
 
 export default function Home() {
@@ -14,12 +15,24 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Services />
-        <BiteSteps />
-        <Branches />
-        <AccreditationBand />
-        <FAQ />
-        <Contact />
+        <Reveal>
+          <Services />
+        </Reveal>
+        <Reveal delayMs={40}>
+          <BiteSteps />
+        </Reveal>
+        <Reveal delayMs={40}>
+          <Branches />
+        </Reveal>
+        <Reveal>
+          <AccreditationBand />
+        </Reveal>
+        <Reveal delayMs={40}>
+          <FAQ />
+        </Reveal>
+        <Reveal>
+          <Contact />
+        </Reveal>
       </main>
       <Footer />
     </>

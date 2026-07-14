@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import type { Branch } from "@/data/branches";
 
 const shapePaths: Record<Branch["mapShape"], React.ReactNode> = {
@@ -15,33 +16,57 @@ const shapePaths: Record<Branch["mapShape"], React.ReactNode> = {
   ),
   circle: <circle cx="150" cy="70" r="50" fill="none" />,
   triangle: <polygon points="150,10 290,130 10,130" fill="none" />,
-  waves: (
-    <path d="M0 100 Q75 20 150 70 Q225 120 300 40" fill="none" />
-  ),
+  waves: <path d="M0 100 Q75 20 150 70 Q225 120 300 40" fill="none" />,
   box: <rect x="50" y="20" width="200" height="100" fill="none" />,
 };
 
-export default function BranchCard({ branch }: { branch: Branch }) {
+export default function BranchCard({
+  branch,
+  style,
+}: {
+  branch: Branch;
+  style?: CSSProperties;
+}) {
   const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.mapQuery)}`;
 
   return (
-    <article className="branch-card">
-      <div className="branch-map" style={{ background: branch.mapStyle }}>
-        <svg
-          className="branch-map-lines"
-          viewBox="0 0 300 140"
-          aria-hidden="true"
-        >
-          {shapePaths[branch.mapShape]}
-        </svg>
-        <div className="branch-pin" aria-hidden="true">
-          📍
-        </div>
+    <article className="branch-card branch-card-enter" style={style}>
+      <div
+        className={`branch-map${branch.mapEmbedUrl ? " has-embed" : ""}`}
+        style={branch.mapEmbedUrl ? undefined : { background: branch.mapStyle }}
+      >
+        {branch.mapEmbedUrl ? (
+          <iframe
+            className="branch-map-embed"
+            src={branch.mapEmbedUrl}
+            title={`${branch.name} map`}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        ) : (
+          <>
+            <svg
+              className="branch-map-lines"
+              viewBox="0 0 300 140"
+              aria-hidden="true"
+            >
+              {shapePaths[branch.mapShape]}
+            </svg>
+            <div className="branch-pin" aria-hidden="true">
+              📍
+            </div>
+          </>
+        )}
         <div className="branch-num-badge">
           Branch {branch.number} · {branch.brand}
           {branch.main ? " · Main" : ""}
         </div>
-        <div className="branch-status open">Open</div>
+        <div
+          className={`branch-status ${branch.accredited ? "accredited" : "walkins"}`}
+        >
+          {branch.accredited ? "Accredited" : "Walk-ins OK"}
+        </div>
       </div>
       <div className="branch-info">
         <h3 className="branch-name">{branch.name}</h3>

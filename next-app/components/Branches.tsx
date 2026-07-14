@@ -48,8 +48,12 @@ export default function Branches() {
           </div>
         </div>
         <div className="branches-grid" aria-live="polite">
-          {visibleBranches.map((branch) => (
-            <BranchCard branch={branch} key={branch.number} />
+          {visibleBranches.map((branch, index) => (
+            <BranchCard
+              branch={branch}
+              key={`${filter}-${branch.number}`}
+              style={{ animationDelay: `${Math.min(index, 8) * 40}ms` }}
+            />
           ))}
         </div>
       </div>

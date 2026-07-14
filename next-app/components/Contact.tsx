@@ -1,39 +1,10 @@
 "use client";
 
-import { type FormEvent, useState } from "react";
+import { useForm, ValidationError } from "@formspree/react";
 import { branches } from "@/data/branches";
 
-type FormStatus = "idle" | "opening" | "success";
-
 export default function Contact() {
-  const [status, setStatus] = useState<FormStatus>("idle");
-
-  function submitContact(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    if (!form.reportValidity()) return;
-
-    const data = new FormData(form);
-    const firstName = String(data.get("firstName") ?? "").trim();
-    const lastName = String(data.get("lastName") ?? "").trim();
-    const email = String(data.get("email") ?? "").trim();
-    const phone = String(data.get("phone") ?? "").trim();
-    const branch = String(data.get("branch") ?? "").trim();
-    const message = String(data.get("message") ?? "").trim();
-
-    const subject = encodeURIComponent(
-      `ARC Inquiry from ${firstName} ${lastName}`,
-    );
-    const body = encodeURIComponent(
-      `Name: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${
-        phone || "Not provided"
-      }\nNearest Branch: ${branch || "Not selected"}\n\nMessage:\n${message}`,
-    );
-
-    setStatus("opening");
-    window.location.href = `mailto:arcantirabisclinic@gmail.com?subject=${subject}&body=${body}`;
-    window.setTimeout(() => setStatus("success"), 800);
-  }
+  const [state, handleSubmit] = useForm("xbdnjnzy");
 
   return (
     <section className="section contact-section" id="contact">
@@ -45,85 +16,123 @@ export default function Contact() {
           a message and our team will respond within 24 hours.
         </p>
         <div className="contact-grid">
-          <form className="contact-form" onSubmit={submitContact}>
-            <div className="form-row">
+          {state.succeeded ? (
+            <div className="contact-form contact-form-success" role="status">
+              <p className="form-success show">
+                Message sent. We&apos;ll get back to you soon. For emergencies,
+                call{" "}
+                <a href="tel:09469451531">0946 945 1531</a> or email{" "}
+                <a href="mailto:arcantirabisclinic@gmail.com">
+                  arcantirabisclinic@gmail.com
+                </a>
+                .
+              </p>
+            </div>
+          ) : (
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <input
+                type="hidden"
+                name="_subject"
+                value="ARC Website Inquiry"
+              />
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="firstName">First Name</label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="First Name"
+                    placeholder="Juan"
+                    required
+                  />
+                  <ValidationError
+                    prefix="First name"
+                    field="First Name"
+                    errors={state.errors}
+                    className="form-error show"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="lastName">Last Name</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="Last Name"
+                    placeholder="Dela Cruz"
+                    required
+                  />
+                  <ValidationError
+                    prefix="Last name"
+                    field="Last Name"
+                    errors={state.errors}
+                    className="form-error show"
+                  />
+                </div>
+              </div>
               <div className="form-group">
-                <label htmlFor="firstName">First Name</label>
+                <label htmlFor="email">Email Address</label>
                 <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  placeholder="Juan"
+                  type="email"
+                  id="email"
+                  name="Email"
+                  placeholder="juan@email.com"
                   required
+                />
+                <ValidationError
+                  prefix="Email"
+                  field="Email"
+                  errors={state.errors}
+                  className="form-error show"
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="lastName">Last Name</label>
+                <label htmlFor="phone">Phone Number</label>
                 <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  placeholder="Dela Cruz"
-                  required
+                  type="tel"
+                  id="phone"
+                  name="Phone"
+                  placeholder="09XX XXX XXXX"
                 />
               </div>
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email Address</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="juan@email.com"
-                required
+              <div className="form-group">
+                <label htmlFor="branch">Nearest Branch</label>
+                <select id="branch" name="Nearest Branch" defaultValue="">
+                  <option value="">Select a branch...</option>
+                  {branches.map((branch) => (
+                    <option key={branch.number} value={branch.shortName}>
+                      {branch.shortName}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="message">Message</label>
+                <textarea
+                  id="message"
+                  name="Message"
+                  placeholder="How can we help you?"
+                  required
+                />
+                <ValidationError
+                  prefix="Message"
+                  field="Message"
+                  errors={state.errors}
+                  className="form-error show"
+                />
+              </div>
+              <ValidationError
+                errors={state.errors}
+                className="form-error show"
               />
-            </div>
-            <div className="form-group">
-              <label htmlFor="phone">Phone Number</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="09XX XXX XXXX"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="branch">Nearest Branch</label>
-              <select id="branch" name="branch" defaultValue="">
-                <option value="">Select a branch...</option>
-                {branches.map((branch) => (
-                  <option key={branch.number}>{branch.shortName}</option>
-                ))}
-              </select>
-            </div>
-            <div className="form-group">
-              <label htmlFor="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                placeholder="How can we help you?"
-                required
-              />
-            </div>
-            <p
-              className={`form-success${status === "success" ? " show" : ""}`}
-              aria-live="polite"
-            >
-              Your email app should open. If not, email us at
-              arcantirabisclinic@gmail.com.
-            </p>
-            <button
-              className="btn-primary"
-              type="submit"
-              disabled={status === "opening"}
-            >
-              {status === "opening"
-                ? "Opening email..."
-                : status === "success"
-                  ? "Message Sent ✓"
-                  : "Send Message"}
-            </button>
-          </form>
+              <button
+                className="btn-primary"
+                type="submit"
+                disabled={state.submitting}
+              >
+                {state.submitting ? "Sending..." : "Send Message"}
+              </button>
+            </form>
+          )}
           <div className="contact-info">
             <ContactItem icon="📞" label="Main Branch Contact">
               <a href="tel:09469451531">0946 945 1531</a>
@@ -136,9 +145,9 @@ export default function Contact() {
               </a>
             </ContactItem>
             <ContactItem icon="📍" label="Main Office">
-              JB Lacson Bldg., L. De Ocampo St. corner
+              JB Lacson Bldg, Parairo Street,
               <br />
-              Paraiso St., Saranay District, Guimba,
+              Cor Saranay District, Guimba,
               <br />
               Nueva Ecija
             </ContactItem>
@@ -147,7 +156,21 @@ export default function Contact() {
               <br />
               <small>*Hours vary by branch. Call ahead to confirm.</small>
             </ContactItem>
-            <ContactItem icon="📘" label="Follow Us">
+            <ContactItem
+              icon={
+                <svg
+                  className="ci-facebook"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.931-1.956 1.886v2.27h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073" />
+                </svg>
+              }
+              label="Follow Us"
+            >
               <a
                 href="https://www.facebook.com/profile.php?id=61591336026166"
                 target="_blank"
@@ -168,7 +191,7 @@ function ContactItem({
   label,
   children,
 }: {
-  icon: string;
+  icon: React.ReactNode;
   label: string;
   children: React.ReactNode;
 }) {

@@ -78,11 +78,12 @@ export default function FAQ() {
                   </button>
                 </h3>
                 <div
-                  className={`faq-a${isOpen ? " open" : ""}`}
+                  className={`faq-a-panel${isOpen ? " open" : ""}`}
                   id={`faq-answer-${index}`}
-                  hidden={!isOpen}
+                  role="region"
+                  aria-hidden={!isOpen}
                 >
-                  {answer}
+                  <div className="faq-a">{answer}</div>
                 </div>
               </div>
             );

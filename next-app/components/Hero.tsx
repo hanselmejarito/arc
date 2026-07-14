@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero-inner">
-        <div>
+        <div className="hero-copy hero-enter">
           <div className="hero-badge">
             DOH-Accredited · PhilHealth Partner
           </div>
@@ -47,7 +47,7 @@ export default function Hero() {
             </a>
           </div>
         </div>
-        <div className="hero-visual">
+        <div className="hero-visual hero-enter hero-enter-delay">
           <div className="hero-map-wrap">
             <BranchMap />
           </div>

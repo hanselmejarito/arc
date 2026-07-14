@@ -78,6 +78,42 @@ textarea {
   background: var(--red-dark);
 }
 
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-enter {
+  animation: fade-up 0.75s ease both;
+}
+
+.hero-enter-delay {
+  animation-delay: 0.16s;
+}
+
+.branch-card-enter {
+  animation: fade-up 0.45s ease both;
+}
+
 .pulse {
   width: 8px;
   height: 8px;
@@ -641,6 +677,25 @@ nav a:hover {
   overflow: hidden;
 }
 
+.branch-map.has-embed {
+  height: 180px;
+  background: #e8eef2;
+}
+
+.branch-map-embed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+}
+
+.branch-map.has-embed:hover .branch-map-embed,
+.branch-map.has-embed:focus-within .branch-map-embed {
+  pointer-events: auto;
+}
+
 .branch-map-lines {
   position: absolute;
   width: 100%;
@@ -654,27 +709,37 @@ nav a:hover {
 .branch-num-badge,
 .branch-status {
   position: absolute;
+  z-index: 2;
   top: 12px;
-  padding: 4px 10px;
+  padding: 5px 11px;
   border-radius: 100px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 28%);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .branch-num-badge {
   left: 12px;
+  border: 1px solid rgb(255 255 255 / 70%);
   background: var(--yellow);
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  color: var(--gray-800);
 }
 
 .branch-status {
   right: 12px;
+  border: 1px solid rgb(255 255 255 / 35%);
+  color: #fff;
 }
 
-.branch-status.open {
-  background: #dcfce7;
-  color: #15803d;
+.branch-status.accredited {
+  background: #15803d;
+}
+
+.branch-status.walkins {
+  background: #0369a1;
 }
 
 .branch-pin {
@@ -734,9 +799,9 @@ nav a:hover {
 .branch-tel {
   display: block;
   margin-top: 12px;
-  color: var(--yellow-dark);
+  color: #9a6700;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .branch-tel:hover {
@@ -827,6 +892,7 @@ nav a:hover {
 
 .faq-grid {
   display: grid;
+  align-items: start;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-top: 48px;
@@ -879,16 +945,35 @@ nav a:hover {
   transform: rotate(180deg);
 }
 
+.faq-a-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.32s ease;
+}
+
+.faq-a-panel.open {
+  grid-template-rows: 1fr;
+}
+
 .faq-a {
-  padding: 0 24px 20px;
-  border-top: 1px solid var(--gray-100);
+  overflow: hidden;
+  min-height: 0;
+  padding: 0 24px;
+  border-top: 1px solid transparent;
   color: var(--gray-600);
   font-size: 13px;
   line-height: 1.7;
+  opacity: 0;
+  transition:
+    opacity 0.28s ease,
+    padding 0.28s ease,
+    border-color 0.28s ease;
 }
 
-.faq-a[hidden] {
-  display: none;
+.faq-a-panel.open .faq-a {
+  padding: 0 24px 20px;
+  border-top-color: var(--gray-100);
+  opacity: 1;
 }
 
 .contact-section {
@@ -989,6 +1074,21 @@ nav a:hover {
   display: block;
 }
 
+.form-error {
+  display: none;
+  margin-top: 6px;
+  color: #fca5a5;
+  font-size: 12px;
+}
+
+.form-error.show {
+  display: block;
+}
+
+.contact-form-success {
+  justify-content: center;
+}
+
 .contact-info {
   gap: 28px;
 }
@@ -1009,6 +1109,10 @@ nav a:hover {
   border-radius: 10px;
   background: rgb(255 255 255 / 8%);
   font-size: 20px;
+}
+
+.ci-facebook {
+  color: #1877f2;
 }
 
 .ci-label {
@@ -1177,17 +1281,28 @@ footer span {
     top: 100%;
     right: 0;
     left: 0;
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 4px;
     padding: 12px 16px 16px;
     border-bottom: 1px solid var(--gray-200);
     background: var(--white);
     box-shadow: 0 8px 24px rgb(0 0 0 / 8%);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    visibility: hidden;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      visibility 0.25s ease;
   }
 
   nav.open {
-    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    visibility: visible;
   }
 
   nav a {
@@ -1303,6 +1418,10 @@ footer span {
     height: 120px;
   }
 
+  .branch-map.has-embed {
+    height: 160px;
+  }
+
   .branch-actions {
     flex-direction: column;
   }
@@ -1366,7 +1485,18 @@ footer span {
   *::before,
   *::after {
     scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+
+  .reveal,
+  .hero-enter,
+  .hero-enter-delay,
+  .branch-card-enter {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
   }
 }
