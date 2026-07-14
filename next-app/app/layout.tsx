@@ -1,11 +1,64 @@
 import type { Metadata } from "next";
+import { getSiteUrl, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import "leaflet/dist/leaflet.css";
 import "./globals.css";
 
+const siteUrl = getSiteUrl();
+
 export const metadata: Metadata = {
-  title: "ARC Anti Rabies Clinic | 11 Branches",
-  description:
-    "Immediate anti-rabies treatment and preventive vaccination across Nueva Ecija and Tarlac.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${SITE_NAME} | 11 Branches`,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: [
+    "anti-rabies clinic",
+    "rabies vaccine",
+    "post-exposure prophylaxis",
+    "Nueva Ecija",
+    "Tarlac",
+    "Guimba",
+    "Cabanatuan",
+    "animal bite",
+    "ARC Anti Rabies Clinic",
+  ],
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  openGraph: {
+    type: "website",
+    locale: "en_PH",
+    url: siteUrl,
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | 11 Branches`,
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: "/arc_logo.jpg",
+        width: 512,
+        height: 512,
+        alt: `${SITE_NAME} logo`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: `${SITE_NAME} | 11 Branches`,
+    description: SITE_DESCRIPTION,
+    images: ["/arc_logo.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
   icons: {
     icon: [
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
