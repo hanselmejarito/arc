@@ -6,7 +6,7 @@ export default function Footer() {
         &amp; Tarlac
       </div>
       <div>
-        DOH-Accredited · PhilHealth Partner · © 2025 ARC Anti Rabies Clinic. All
+        DOH-Accredited · PhilHealth Partner · © 2026 ARC Anti Rabies Clinic. All
         rights reserved.
       </div>
       <div className="footer-warning">

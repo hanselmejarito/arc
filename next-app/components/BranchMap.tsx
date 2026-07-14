@@ -3,6 +3,44 @@
 import { useEffect, useRef } from "react";
 import { branches } from "@/data/branches";
 
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function highlightBranch(number: number) {
+  const el = document.getElementById(`branch-${number}`);
+  if (!el) return;
+
+  el.scrollIntoView({ behavior: "smooth", block: "center" });
+  el.classList.add("is-highlighted");
+  window.setTimeout(() => el.classList.remove("is-highlighted"), 2800);
+}
+
+function buildPopup(branch: (typeof branches)[number]) {
+  const status = branch.accredited ? "Accredited" : "Open daily";
+  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.mapQuery)}`;
+
+  return `
+    <div class="hero-map-popup">
+      <div class="hero-map-popup-header">
+        <strong>${escapeHtml(branch.name)}</strong>
+        <span class="hero-map-popup-status${branch.accredited ? " accredited" : ""}">${status}</span>
+      </div>
+      <p class="hero-map-popup-meta">${escapeHtml(branch.hours)}</p>
+      <p class="hero-map-popup-meta">${escapeHtml(branch.phone)}</p>
+      <div class="hero-map-popup-actions">
+        <a class="hero-map-popup-btn call" href="tel:${escapeHtml(branch.phoneHref)}">Call</a>
+        <a class="hero-map-popup-btn directions" href="${directionsUrl}" target="_blank" rel="noopener noreferrer">Directions</a>
+        <a class="hero-map-popup-btn details" href="#branch-${branch.number}" data-branch-id="${branch.number}">Details</a>
+      </div>
+    </div>
+  `;
+}
+
 export default function BranchMap() {
   const mapElement = useRef<HTMLDivElement>(null);
 
@@ -32,21 +70,38 @@ export default function BranchMap() {
 
       const bounds = L.latLngBounds([]);
       branches.forEach((branch) => {
-        const size = branch.main ? 18 : 14;
+        const tone = branch.accredited ? "accredited" : "walkins";
+        const iconSize = branch.main ? 36 : 30;
         const icon = L.divIcon({
           className: "hero-map-marker",
-          html: `<div class="hero-map-dot${branch.main ? " main" : ""}"></div>`,
-          iconSize: [size, size],
-          iconAnchor: [size / 2, size / 2],
+          html: `<span class="hero-map-pulse ${tone}${branch.main ? " main" : ""}" aria-hidden="true"><span class="hero-map-dot ${tone}${branch.main ? " main" : ""}"></span></span>`,
+          iconSize: [iconSize, iconSize],
+          iconAnchor: [iconSize / 2, iconSize / 2],
         });
 
         const marker = L.marker(branch.coordinates, { icon }).addTo(map);
-        marker.bindPopup(
-          `<div class="hero-map-popup"><strong>${branch.name}</strong><a href="#branches">View branch details →</a></div>`,
-        );
+        marker.bindPopup(buildPopup(branch), { maxWidth: 220, minWidth: 0 });
         bounds.extend(branch.coordinates);
       });
 
+      const onPopupClick = (event: MouseEvent) => {
+        const target = (event.target as HTMLElement | null)?.closest(
+          "[data-branch-id]",
+        ) as HTMLElement | null;
+        if (!target) return;
+        event.preventDefault();
+        highlightBranch(Number(target.dataset.branchId));
+      };
+
+      map.getContainer().addEventListener("click", onPopupClick);
+      map.on("popupopen", (event) => {
+        const content = event.popup
+          .getElement()
+          ?.querySelector(".leaflet-popup-content");
+        if (content instanceof HTMLElement) {
+          content.style.width = "auto";
+        }
+      });
       map.fitBounds(bounds, { padding: [28, 28] });
       const resizeTimer = window.setTimeout(() => map.invalidateSize(), 350);
       const resize = () => map.invalidateSize();
@@ -55,6 +110,7 @@ export default function BranchMap() {
       cleanup = () => {
         window.clearTimeout(resizeTimer);
         window.removeEventListener("resize", resize);
+        map.getContainer().removeEventListener("click", onPopupClick);
         map.remove();
       };
     });

@@ -54,6 +54,16 @@ export default function Hero() {
           <div className="hero-map-caption">
             11 BRANCHES · NUEVA ECIJA &amp; TARLAC
           </div>
+          <div className="hero-map-legend" aria-label="Map legend">
+            <span>
+              <i className="hero-map-legend-dot accredited" aria-hidden="true" />
+              Accredited
+            </span>
+            <span>
+              <i className="hero-map-legend-dot walkins" aria-hidden="true" />
+              Open daily
+            </span>
+          </div>
         </div>
       </div>
     </section>

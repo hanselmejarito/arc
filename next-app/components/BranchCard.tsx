@@ -30,7 +30,11 @@ export default function BranchCard({
   const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.mapQuery)}`;
 
   return (
-    <article className="branch-card branch-card-enter" style={style}>
+    <article
+      id={`branch-${branch.number}`}
+      className="branch-card branch-card-enter"
+      style={style}
+    >
       <div
         className={`branch-map${branch.mapEmbedUrl ? " has-embed" : ""}`}
         style={branch.mapEmbedUrl ? undefined : { background: branch.mapStyle }}
@@ -65,7 +69,7 @@ export default function BranchCard({
         <div
           className={`branch-status ${branch.accredited ? "accredited" : "walkins"}`}
         >
-          {branch.accredited ? "Accredited" : "Walk-ins OK"}
+          {branch.accredited ? "Accredited" : "Open daily"}
         </div>
       </div>
       <div className="branch-info">
