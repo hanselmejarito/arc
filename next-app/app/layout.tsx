@@ -1,7 +1,23 @@
 import type { Metadata } from "next";
+import { Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
 import { getSiteUrl, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import "leaflet/dist/leaflet.css";
 import "./globals.css";
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 const siteUrl = getSiteUrl();
 
@@ -74,8 +90,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body id="top">{children}</body>
+    <html lang="en" className={`${plusJakarta.variable} ${instrumentSerif.variable}`}>
+      <body id="top" className={plusJakarta.className}>
+        {children}
+      </body>
     </html>
   );
 }

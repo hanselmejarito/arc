@@ -17,7 +17,7 @@ export const version = "2026-07-14-v5";
 
 export default async function OgImage() {
   const [logoData, instrumentSerif, dmSans] = await Promise.all([
-    readFile(join(process.cwd(), "..", "arc_logo.jpg")),
+    readFile(join(process.cwd(), "public", "arc_logo.jpg")),
     fetch(
       "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap",
     ).then((res) => res.text()),

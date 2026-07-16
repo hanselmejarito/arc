@@ -1,5 +1,7 @@
+import Image from "next/image";
 import type { CSSProperties } from "react";
 import type { Branch } from "@/data/branches";
+import { brandLogos } from "@/data/brands";
 
 const shapePaths: Record<Branch["mapShape"], React.ReactNode> = {
   cross: (
@@ -28,6 +30,7 @@ export default function BranchCard({
   style?: CSSProperties;
 }) {
   const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.mapQuery)}`;
+  const brand = brandLogos[branch.brand];
 
   return (
     <article
@@ -73,7 +76,18 @@ export default function BranchCard({
         </div>
       </div>
       <div className="branch-info">
-        <h3 className="branch-name">{branch.name}</h3>
+        <div className="branch-name-row">
+          <div className="branch-brand-mark">
+            <Image
+              src={brand.src}
+              alt={brand.alt}
+              width={40}
+              height={40}
+              className="branch-brand-logo"
+            />
+          </div>
+          <h3 className="branch-name">{branch.name}</h3>
+        </div>
         <div className="branch-address">
           <span aria-hidden="true">📍</span>
           <span>{branch.address}</span>

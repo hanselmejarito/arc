@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
+import { brandLogos, brandOrder } from "@/data/brands";
 import { branches, type Branch, type Province } from "@/data/branches";
 import BranchCard from "./BranchCard";
 
@@ -64,6 +66,25 @@ export default function Branches() {
             <p className="section-sub">
               ARC, LIFEMED, and VAXGUARD clinics across Nueva Ecija and Tarlac.
             </p>
+            <div className="brand-strip" aria-label="Clinic brands">
+              {brandOrder.map((id) => {
+                const brand = brandLogos[id];
+                return (
+                  <div className="brand-strip-item" key={id}>
+                    <span className="brand-strip-mark">
+                      <Image
+                        src={brand.src}
+                        alt=""
+                        width={44}
+                        height={44}
+                        className="brand-strip-logo"
+                      />
+                    </span>
+                    <span className="brand-strip-label">{brand.label}</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
           <div className="branches-toolbar">
             <label className="branch-search">
