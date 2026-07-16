@@ -1853,6 +1853,8 @@ footer span {
   }
 
   .branch-search {
+    width: 100%;
+    flex: none;
     max-width: none;
   }
 
