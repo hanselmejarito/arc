@@ -23,9 +23,7 @@ export default function Home() {
         <Reveal delayMs={40}>
           <BiteSteps />
         </Reveal>
-        <Reveal delayMs={40}>
-          <Branches />
-        </Reveal>
+        <Branches />
         <Reveal>
           <AccreditationBand />
         </Reveal>
