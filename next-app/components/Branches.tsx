@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { brandLogos, brandOrder } from "@/data/brands";
 import { branches, type Branch, type Province } from "@/data/branches";
 import BranchCard from "./BranchCard";
+import BranchMap from "./BranchMap";
 
 type Filter = "all" | "accredited" | Province;
 
@@ -60,11 +61,11 @@ export default function Branches() {
     <section className="section branches-section" id="branches">
       <div className="section-inner">
         <div className="branches-header">
-          <div className="branches-intro">
+          <div className="branches-intro section-head">
             <div className="section-label">Locations</div>
             <h2 className="section-title">Our 11 Branches</h2>
             <p className="section-sub">
-              ARC, LIFEMED, and VAXGUARD clinics across Nueva Ecija and Tarlac.
+              ARC, ARCII, and LIFEMED clinics across Nueva Ecija and Tarlac.
             </p>
             <div className="brand-strip" aria-label="Clinic brands">
               {brandOrder.map((id) => {
@@ -84,6 +85,26 @@ export default function Branches() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+          <div className="branches-map-panel">
+            <div className="branches-map-wrap">
+              <BranchMap />
+            </div>
+            <div className="branches-map-meta">
+              <p className="branches-map-caption">
+                11 branches · Nueva Ecija &amp; Tarlac
+              </p>
+              <div className="hero-map-legend" aria-label="Map legend">
+                <span>
+                  <i className="hero-map-legend-dot accredited" aria-hidden="true" />
+                  Accredited
+                </span>
+                <span>
+                  <i className="hero-map-legend-dot walkins" aria-hidden="true" />
+                  Open daily
+                </span>
+              </div>
             </div>
           </div>
           <div className="branches-toolbar">

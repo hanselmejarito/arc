@@ -1,4 +1,6 @@
-export type BrandId = "ARC" | "LIFEMED" | "VAXGUARD";
+import type { Branch } from "@/data/branches";
+
+export type BrandId = Branch["brand"];
 
 export const brandLogos = {
   ARC: {
@@ -11,14 +13,13 @@ export const brandLogos = {
     alt: "LIFE MED Animal Bite Clinic",
     label: "LIFEMED",
   },
-  VAXGUARD: {
-    src: "/brands/vaxguard.jpg",
-    alt: "VAXGUARD Anti-Rabies Vaccine",
-    label: "VAXGUARD",
-  },
 } as const satisfies Record<
-  BrandId,
+  "ARC" | "LIFEMED",
   { src: string; alt: string; label: string }
 >;
 
-export const brandOrder: BrandId[] = ["ARC", "LIFEMED", "VAXGUARD"];
+export const brandOrder = ["ARC", "LIFEMED"] as const;
+
+export function getBranchBrandLogo(brand: BrandId) {
+  return brandLogos[brand === "ARCII" ? "ARC" : brand];
+}

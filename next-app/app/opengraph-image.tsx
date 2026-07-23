@@ -16,11 +16,9 @@ export const contentType = "image/png";
 export const version = "2026-07-14-v5";
 
 export default async function OgImage() {
-  const [logoData, instrumentSerif, dmSans] = await Promise.all([
+  const [logoData, gagalinData, dmSans] = await Promise.all([
     readFile(join(process.cwd(), "public", "arc_logo.jpg")),
-    fetch(
-      "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap",
-    ).then((res) => res.text()),
+    readFile(join(process.cwd(), "fonts", "Gagalin-Regular.otf")),
     fetch(
       "https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&display=swap",
     ).then((res) => res.text()),
@@ -122,7 +120,7 @@ export default async function OgImage() {
                 flexDirection: "column",
                 marginBottom: 18,
                 color: "#fff",
-                fontFamily: "Instrument Serif",
+                fontFamily: "Gagalin",
                 fontSize: 68,
                 lineHeight: 1.02,
               }}
@@ -316,8 +314,8 @@ export default async function OgImage() {
       ...size,
       fonts: [
         {
-          name: "Instrument Serif",
-          data: await loadGoogleFont(instrumentSerif, "Instrument Serif"),
+          name: "Gagalin",
+          data: gagalinData,
           style: "normal",
           weight: 400,
         },

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import type { Branch } from "@/data/branches";
-import { brandLogos } from "@/data/brands";
+import { getBranchBrandLogo } from "@/data/brands";
 
 const shapePaths: Record<Branch["mapShape"], React.ReactNode> = {
   cross: (
@@ -30,7 +30,7 @@ export default function BranchCard({
   style?: CSSProperties;
 }) {
   const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.mapQuery)}`;
-  const brand = brandLogos[branch.brand];
+  const brand = getBranchBrandLogo(branch.brand);
 
   return (
     <article
@@ -39,10 +39,22 @@ export default function BranchCard({
       style={style}
     >
       <div
-        className={`branch-map${branch.mapEmbedUrl ? " has-embed" : ""}`}
-        style={branch.mapEmbedUrl ? undefined : { background: branch.mapStyle }}
+        className={`branch-map${branch.photo ? " has-photo" : branch.mapEmbedUrl ? " has-embed" : ""}`}
+        style={
+          branch.photo || branch.mapEmbedUrl
+            ? undefined
+            : { background: branch.mapStyle }
+        }
       >
-        {branch.mapEmbedUrl ? (
+        {branch.photo ? (
+          <Image
+            className="branch-photo"
+            src={branch.photo}
+            alt={`${branch.name} storefront`}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+        ) : branch.mapEmbedUrl ? (
           <iframe
             className="branch-map-embed"
             src={branch.mapEmbedUrl}

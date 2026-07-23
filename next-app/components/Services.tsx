@@ -1,8 +1,17 @@
 import ScrollLink from "./ScrollLink";
+import {
+  IconBandage,
+  IconClipboard,
+  IconDrop,
+  IconFlask,
+  IconPill,
+  IconShield,
+  IconSyringe,
+} from "./ServiceIcons";
 
 const services = [
   {
-    icon: "💉",
+    Icon: IconSyringe,
     tone: "red",
     name: "Post-Exposure Prophylaxis (PEP)",
     description:
@@ -11,7 +20,7 @@ const services = [
       "Free vaccination for eligible members at 5 accredited branches",
   },
   {
-    icon: "🛡️",
+    Icon: IconShield,
     tone: "teal",
     name: "Pre-Exposure Prophylaxis (PrEP)",
     description:
@@ -19,7 +28,7 @@ const services = [
     detail: "Available at all 11 branches",
   },
   {
-    icon: "🩸",
+    Icon: IconDrop,
     tone: "warm",
     name: "Rabies Immunoglobulin (RIG)",
     description:
@@ -27,7 +36,7 @@ const services = [
     detail: "Equine & Human RIG available",
   },
   {
-    icon: "🩹",
+    Icon: IconBandage,
     tone: "red",
     name: "Wound Assessment & Care",
     description:
@@ -35,7 +44,7 @@ const services = [
     detail: "Included with every consultation",
   },
   {
-    icon: "💊",
+    Icon: IconPill,
     tone: "teal",
     name: "Anti-Tetanus Prophylaxis",
     description:
@@ -43,12 +52,21 @@ const services = [
     detail: "DOH-accredited vaccines",
   },
   {
-    icon: "📋",
+    Icon: IconClipboard,
     tone: "warm",
     name: "Follow-Up & Monitoring",
     description:
       "Scheduled return visits with reminders for completing your full vaccine series. Treatment cards issued at first visit — valid at any ARC branch for continuation of doses.",
     detail: "Inter-branch records accepted",
+  },
+  {
+    Icon: IconFlask,
+    tone: "teal",
+    name: "Other Vaccines",
+    description:
+      "Hepatitis B, Flu (Influenza), and Pneumococcal vaccines are also available for added protection against common preventable diseases.",
+    detail: "Not covered by PhilHealth",
+    noCheck: true,
   },
 ] as const;
 
@@ -56,14 +74,16 @@ export default function Services() {
   return (
     <section className="section services-section" id="services">
       <div className="section-inner">
-        <div className="section-label">What We Offer</div>
-        <h2 className="section-title">Complete Rabies Prevention &amp; Care</h2>
-        <p className="section-sub">
-          From emergency post-exposure treatment to routine pre-exposure
-          vaccination — ARC covers everything.
-        </p>
+        <div className="section-head">
+          <div className="section-label">What We Offer</div>
+          <h2 className="section-title">Complete Rabies Prevention &amp; Care</h2>
+          <p className="section-sub">
+            From emergency post-exposure treatment to routine pre-exposure
+            vaccination — ARC covers everything.
+          </p>
+        </div>
         <div className="services-grid">
-          {services.map((service) => (
+          {services.map(({ Icon, ...service }) => (
             <ScrollLink
               className="service-card clickable"
               href="#contact"
@@ -71,11 +91,14 @@ export default function Services() {
               targetId="contact"
             >
               <div className={`service-icon ${service.tone}`}>
-                {service.icon}
+                <Icon />
               </div>
               <div className="service-name">{service.name}</div>
               <div className="service-desc">{service.description}</div>
-              <div className="service-price">✓ {service.detail}</div>
+              <div className="service-price">
+                {"noCheck" in service && service.noCheck ? "Note · " : "Included · "}
+                {service.detail}
+              </div>
             </ScrollLink>
           ))}
         </div>

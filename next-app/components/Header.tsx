@@ -15,9 +15,47 @@ const links = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const onHome = pathname === "/";
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(window.scrollY / max, 1) : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!onHome) {
+      setActiveSection(null);
+      return;
+    }
+
+    const sections = links
+      .map(([, id]) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        }
+      },
+      { rootMargin: "-35% 0px -60% 0px" },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [onHome]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -65,7 +103,12 @@ export default function Header() {
           <span className="pulse" aria-hidden="true" />
         </a>
       )}
-      <header ref={headerRef}>
+      <header ref={headerRef} className={scrolled ? "scrolled" : undefined}>
+        <div
+          className="scroll-progress"
+          style={{ transform: `scaleX(${progress})` }}
+          aria-hidden="true"
+        />
         <div className="header-inner">
           {onHome ? (
             <ScrollLink
@@ -79,10 +122,23 @@ export default function Header() {
                 src="/arc_logo.jpg"
                 alt="ARC Anti Rabies Vaccine Clinic"
                 className="logo-img"
-                width={52}
-                height={52}
+                width={120}
+                height={120}
                 priority
               />
+              <span className="logo-text">
+                <span className="logo-text-mark">ARC</span>
+                <span className="logo-text-sub">Anti Rabies Clinic</span>
+              </span>
+              <span className="logo-partners" aria-hidden="true">
+                <Image
+                  src="/brands/lifemed.jpg"
+                  alt="LIFE MED Animal Bite Clinic"
+                  className="logo-partner-img"
+                  width={60}
+                  height={60}
+                />
+              </span>
             </ScrollLink>
           ) : (
             <Link
@@ -95,10 +151,23 @@ export default function Header() {
                 src="/arc_logo.jpg"
                 alt="ARC Anti Rabies Vaccine Clinic"
                 className="logo-img"
-                width={52}
-                height={52}
+                width={120}
+                height={120}
                 priority
               />
+              <span className="logo-text">
+                <span className="logo-text-mark">ARC</span>
+                <span className="logo-text-sub">Anti Rabies Clinic</span>
+              </span>
+              <span className="logo-partners" aria-hidden="true">
+                <Image
+                  src="/brands/lifemed.jpg"
+                  alt="LIFE MED Animal Bite Clinic"
+                  className="logo-partner-img"
+                  width={60}
+                  height={60}
+                />
+              </span>
             </Link>
           )}
           <button
@@ -132,6 +201,8 @@ export default function Header() {
                   key={id}
                   href={`#${id}`}
                   targetId={id}
+                  className={activeSection === id ? "nav-active" : undefined}
+                  aria-current={activeSection === id ? "true" : undefined}
                   onClick={() => setOpen(false)}
                 >
                   {label}

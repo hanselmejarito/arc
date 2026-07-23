@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useForm, ValidationError } from "@formspree/react";
 import { branches } from "@/data/branches";
 
@@ -8,16 +9,28 @@ export default function Contact() {
 
   return (
     <section className="section contact-section" id="contact">
+      <div className="contact-media" aria-hidden="true">
+        <Image
+          src="/herobg.png"
+          alt=""
+          className="contact-media-img"
+          fill
+          sizes="100vw"
+        />
+        <div className="contact-media-shade" />
+      </div>
       <div className="section-inner">
-        <div className="section-label contact-label">Get In Touch</div>
-        <h2 className="section-title contact-title">Contact ARC</h2>
-        <p className="section-sub contact-sub">
-          Have questions about our services or need to locate a branch? Send us
-          a message and our team will respond within 24 hours.
-        </p>
+        <div className="section-head">
+          <div className="section-label contact-label">Get In Touch</div>
+          <h2 className="section-title contact-title">Contact ARC</h2>
+          <p className="section-sub contact-sub">
+            Have questions about our services or need to locate a branch? Send us
+            a message and our team will respond within 24 hours.
+          </p>
+        </div>
         <div className="contact-grid">
           {state.succeeded ? (
-            <div className="contact-form contact-form-success" role="status">
+            <div className="contact-form-card contact-form-success" role="status">
               <p className="form-success show">
                 Message sent. We&apos;ll get back to you soon. For emergencies,
                 call{" "}
@@ -29,7 +42,7 @@ export default function Contact() {
               </p>
             </div>
           ) : (
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form className="contact-form contact-form-card" onSubmit={handleSubmit}>
               <input
                 type="hidden"
                 name="_subject"
